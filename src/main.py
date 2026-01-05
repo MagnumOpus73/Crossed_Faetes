@@ -2,6 +2,15 @@
 import json
 from pathlib import Path
 
+#Functions useful for handling JSON Files.
+def loadJSON(filepath):
+  with open(filepath, "r") as f:
+    return json.load(f)
+
+def saveJSON(filepath, data):
+  with open(filepath, "w") as f:
+    json.dump(data, f, indent = 4)
+
 #Creation of monster object.
 class Faerie:
   def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve):
