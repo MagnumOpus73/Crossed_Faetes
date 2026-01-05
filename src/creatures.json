@@ -1,0 +1,13 @@
+{
+  "faeries": {
+    "Pyree": {
+      "name": "Pyree",
+      "court": "Summer",
+      "hp": 30,
+      "attack": 60,
+      "defense": 35,
+      "speed": 55,
+      "canEvolve": "True"
+    }
+  }
+}
