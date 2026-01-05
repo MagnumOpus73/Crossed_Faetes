@@ -1,3 +1,8 @@
+#Importing necessary libraries
+import json
+from pathlib import Path
+
+#Creation of monster object.
 class Faerie:
   def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve):
     self.Name = name
@@ -8,10 +13,11 @@ class Faerie:
     self.baseDefense = defense
     self.baseSpeed = speed
     self.canEvolve = canEvolve
-    self.HP = round((((hp * 2) + level)/160) + (level * 2) + 25)
+    self.HP = round((((hp * 2) + level)/160) + (level * 2) + 25)   #Turning base stats to actual stats via Mathematics.
     self.Attack = round((((attack * 2) + level)/10) + level + 25)
     self.Defense = round((((defense * 2) + level)/10) + level + 25)
     self.Speed = round((((speed * 2) + level)/10) + level + 25)
+#Function for later and for testing.  
   def display(self):
     print(self.Name)
     print(self.Level)
@@ -25,7 +31,7 @@ class Faerie:
     print(self.baseSpeed)
     print(self.Speed)
 
-
+#Actual testing. How statlines appear when going through the formulas.
 test1 = Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False")
 test2 = Faerie("TEST", 50, "NULL", 80, 80, 80, 80, "False")
 test3 = Faerie("TEST", 100, "NULL", 80, 80, 80, 80, "False")
