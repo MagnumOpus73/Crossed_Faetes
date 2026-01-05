@@ -1,5 +1,5 @@
 class Faerie:
-  def __init__(self, name, level, court, hp, attack, defense, speed):
+  def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve):
     self.Name = name
     self.Level = level
     self.Court = court
@@ -7,6 +7,7 @@ class Faerie:
     self.baseAttack = attack
     self.baseDefense = defense
     self.baseSpeed = speed
+    self.canEvolve = canEvolve
     self.HP = round((((hp * 2) + level)/160) + (level * 2) + 25)
     self.Attack = round((((attack * 2) + level)/10) + level + 25)
     self.Defense = round((((defense * 2) + level)/10) + level + 25)
@@ -25,9 +26,9 @@ class Faerie:
     print(self.Speed)
 
 
-test1 = Faerie("TEST", 1, "NULL", 80, 80, 80, 80)
-test2 = Faerie("TEST", 50, "NULL", 80, 80, 80, 80)
-test3 = Faerie("TEST", 100, "NULL", 80, 80, 80, 80)
+test1 = Faerie("TEST", 1, "NULL", 80, 80, 80, 80, False)
+test2 = Faerie("TEST", 50, "NULL", 80, 80, 80, 80, False)
+test3 = Faerie("TEST", 100, "NULL", 80, 80, 80, 80, False)
 Faerie.display(test1)
 print()
 Faerie.display(test2)
