@@ -7,10 +7,10 @@ class Faerie:
     self.baseAttack = attack
     self.baseDefense = defense
     self.baseSpeed = speed
-    self.HP = round((((hp * 2) + level)/100) + level + 10)
-    self.Attack = round((((attack * 2) + level)/100) + 5)
-    self.Defense = round((((defense * 2) + level)/100) + 5)
-    self.Speed = round(((speed * 2) + level)/100) + 5)
+    self.HP = round((((hp * 2) + level)/160) + (level * 2) + 25)
+    self.Attack = round((((attack * 2) + level)/10) + level + 25)
+    self.Defense = round((((defense * 2) + level)/10) + level + 25)
+    self.Speed = round((((speed * 2) + level)/10) + level + 25)
   def display(self):
     print(self.Name)
     print(self.Level)
@@ -25,5 +25,11 @@ class Faerie:
     print(self.Speed)
 
 
-test1 = Faerie("TEST", 50, "NULL", 80, 80, 80, 80)
-display(test1)
+test1 = Faerie("TEST", 1, "NULL", 80, 80, 80, 80)
+test2 = Faerie("TEST", 50, "NULL", 80, 80, 80, 80)
+test3 = Faerie("TEST", 100, "NULL", 80, 80, 80, 80)
+Faerie.display(test1)
+print()
+Faerie.display(test2)
+print()
+Faerie.display(test3)
