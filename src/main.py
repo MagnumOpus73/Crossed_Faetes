@@ -26,9 +26,9 @@ class Faerie:
     print(self.Speed)
 
 
-test1 = Faerie("TEST", 1, "NULL", 80, 80, 80, 80, False)
-test2 = Faerie("TEST", 50, "NULL", 80, 80, 80, 80, False)
-test3 = Faerie("TEST", 100, "NULL", 80, 80, 80, 80, False)
+test1 = Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False")
+test2 = Faerie("TEST", 50, "NULL", 80, 80, 80, 80, "False")
+test3 = Faerie("TEST", 100, "NULL", 80, 80, 80, 80, "False")
 Faerie.display(test1)
 print()
 Faerie.display(test2)
