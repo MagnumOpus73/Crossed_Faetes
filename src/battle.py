@@ -20,3 +20,7 @@ while opponent.currentHealth != 0 and player.currentHealth != 0:
     else:
       print("Invalid input: Try Again.")
       playerAction = 0
+
+
+def damage(power, level, attack, enemy_defense):
+  return(((2*level + 2) * power * (attack/enemy_defense))
