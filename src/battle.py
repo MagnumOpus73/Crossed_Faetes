@@ -1,4 +1,8 @@
 playerAction = 0
+
+def damage(power, level, attack, enemy_defense):
+  return(((2*level + 2) * power * (attack/enemy_defense))
+
 def start_of_turn(turn_count):
   turn_count += 1
   
@@ -22,5 +26,3 @@ while opponent.currentHealth != 0 and player.currentHealth != 0:
       playerAction = 0
 
 
-def damage(power, level, attack, enemy_defense):
-  return(((2*level + 2) * power * (attack/enemy_defense))
