@@ -15,7 +15,6 @@ def saveJSON(filepath, data):
 class Faerie:
   def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve):
     self.Name = name
-    self.Level = level
     self.Court = court
     self.baseHP = hp
     self.baseAttack = attack
@@ -39,13 +38,29 @@ class Faerie:
     print(self.Defense)
     print(self.baseSpeed)
     print(self.Speed)
+    
+#Split between the class for database use and the ones being used by the user and enemies.    
+class InPlay_Faerie(Faerie):
+  def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, level):
+    Faerie.__init__(self, name, level, court, hp, attack, defense, speed, canEvolve)
+    self.Level = level
+    self.currentHP = self.HP
+    self.Fainted = False
+
+  def takeDamage(damage, hp):
+    self.currentHP = self.currentHP - damage
+    if self.currentHP <= 0:
+      self.Fainted = True
+    elif self.currentHP > self.HP:
+      self.currentHP = self.HP
+
 
 #Actual testing. How statlines appear when going through the formulas.
-test1 = Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False")
-test2 = Faerie("TEST", 50, "NULL", 80, 80, 80, 80, "False")
-test3 = Faerie("TEST", 100, "NULL", 80, 80, 80, 80, "False")
-Faerie.display(test1)
+test1 = InPlay_Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False")
+test2 = InPlay_Faerie("TEST", 50, "NULL", 80, 80, 80, 80, "False")
+test3 = InPlay_Faerie("TEST", 100, "NULL", 80, 80, 80, 80, "False")
+InPlay_Faerie.display(test1)
 print()
-Faerie.display(test2)
+InPlay_Faerie.display(test2)
 print()
-Faerie.display(test3)
+InPlay_Faerie.display(test3)
