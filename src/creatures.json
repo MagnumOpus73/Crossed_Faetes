@@ -2,7 +2,7 @@
   "faeries": {
     "Pyree": {
       "name": "Pyree",
-      "court": "Summer",
+      "court": "Summer", 
       "hp": 30,
       "attack": 60,
       "defense": 35,
