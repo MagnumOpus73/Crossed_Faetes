@@ -46,6 +46,10 @@ class InPlay_Faerie(Faerie):
     self.Level = level
     self.currentHP = self.HP
     self.Fainted = False
+    self.Poisoned = 0
+    self.Burning = 0
+    self.Withering = 0
+    self.Regrowing = 0    
 
   def takeDamage(damage, hp):
     self.currentHP = self.currentHP - damage
@@ -54,6 +58,7 @@ class InPlay_Faerie(Faerie):
     elif self.currentHP > self.HP:
       self.currentHP = self.HP
 
+  def
 
 #Actual testing. How statlines appear when going through the formulas.
 test1 = InPlay_Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False")
