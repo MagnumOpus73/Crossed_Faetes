@@ -3,9 +3,24 @@ playerAction = 0
 def damage(power, level, attack, enemy_defense):
   return(((2*level + 2) * power * (attack/enemy_defense))
 
-def start_of_turn(turn_count):
-  turn_count += 1
-  
+def start_of_turn(turn_count, self):
+  turn_count += 0.5
+  if self.Burning <= 0:
+    self.currentHP = takeDamage((1/8 * self.currentHP), self)
+    self.Burning -= 1
+  elif self.Poisoned <= 0:
+    self.currentHP = takeDamage((1/16 * self.currentHP * (4 - self.Poisoned)), self)
+    self.Poisoned -= 1
+  elif self.Regrowing <= 0:
+    self.currentHP = takeDamage((-1 * (1/8 * self.currentHP), self))
+    self.Regrowing -= 1
+  elif self.Withering <= 0:
+    self.Withering -= 1
+     if self.Withering > 0:
+       print("You see your monster continue to wither away. ", self.Withering + "turns remaining.")
+     else:
+       self.currentHP = 0
+    
   return turn_count
 
 
