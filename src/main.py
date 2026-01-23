@@ -51,7 +51,7 @@ class InPlay_Faerie(Faerie):
     self.Withering = 0
     self.Regrowing = 0    
 
-  def takeDamage(damage, hp):
+  def takeDamage(damage, self):
     self.currentHP = self.currentHP - damage
     if self.currentHP <= 0:
       self.Fainted = True
