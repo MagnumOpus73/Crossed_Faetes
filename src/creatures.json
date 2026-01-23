@@ -1,5 +1,5 @@
 {
-  "faeries": {
+  "faeries": [
     "Pyree": {
       "name": "Pyree",
       "court": "Summer", 
@@ -18,8 +18,8 @@
       "speed": 65,
       "canEvolve": "True"
     }
-    "Leaproot": {
-      "name": "Leaproot",
+    "Evergrow": {
+      "name": "Evergrow",
       "court": "Spring",
       "hp": 55,
       "attack": 50,
@@ -36,13 +36,6 @@
       "speed": 45,
       "canEvolve": "True"
     }
-  }
-  "moves": {
-    "TESTING": {
-      "name": "TESTING",
-      "power": 50,
-      "accuracy": 100
-    }
-  }
+  ]
 }
 
