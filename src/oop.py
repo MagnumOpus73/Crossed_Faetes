@@ -1,5 +1,5 @@
 class Faerie:
-  def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve):
+  def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, movePool):
     self.Name = name
     self.Court = court
     self.baseHP = hp
@@ -11,6 +11,7 @@ class Faerie:
     self.Attack = round((((attack * 2) + (level*20))/10) + (level*20) + 25)
     self.Defense = round((((defense * 2) + (level*20))/10) + (level*20) + 25)
     self.Speed = round((((speed * 2) + (level*20))/10) + (level*20) + 25)
+    self.Movepool = []
 #Function for later and for testing.  
   def display(self):
     print(self.Name)
@@ -27,8 +28,8 @@ class Faerie:
     
 #Split between the class for database use and the ones being used by the user and enemies.    
 class InPlay_Faerie(Faerie):
-  def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, killCount):
-    Faerie.__init__(self, name, level, court, hp, attack, defense, speed, canEvolve)
+  def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, killCount, movePool):
+    Faerie.__init__(self, name, level, court, hp, attack, defense, speed, canEvolve, movePool)
     self.Level = level
     self.Kills = killCount
     self.currentHP = self.HP
@@ -55,9 +56,9 @@ class InPlay_Faerie(Faerie):
 
 
 #Actual testing. How statlines appear when going through the formulas.
-test1 = InPlay_Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False", 0)
-test2 = InPlay_Faerie("TEST", 2, "NULL", 80, 80, 80, 80, "False", 0)
-test3 = InPlay_Faerie("TEST", 5, "NULL", 80, 80, 80, 80, "False", 0)
+test1 = InPlay_Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False", 0, [])
+test2 = InPlay_Faerie("TEST", 2, "NULL", 80, 80, 80, 80, "False", 0, [])
+test3 = InPlay_Faerie("TEST", 5, "NULL", 80, 80, 80, 80, "False", 0, [])
 InPlay_Faerie.display(test1)
 print()
 InPlay_Faerie.display(test2)
