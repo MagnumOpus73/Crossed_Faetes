@@ -1,7 +1,5 @@
-
-
 #Importing necessary libraries and internal files
-import oop
+import src.oop
 
 import json
 from pathlib import Path
