@@ -7,7 +7,8 @@
       "attack": 60,
       "defense": 35,
       "speed": 55,
-      "canEvolve": "True"
+      "canEvolve": "True",
+      "movePool": ["TESTING-D", "TESTING-S"]
     }
     "Rimekin": {
       "name": "Rimekin",
@@ -16,7 +17,8 @@
       "attack": 45,
       "defense": 40,
       "speed": 65,
-      "canEvolve": "True"
+      "canEvolve": "True",
+      "movePool": ["TESTING-D", "TESTING-S"]
     }
     "Evergrow": {
       "name": "Evergrow",
@@ -25,7 +27,8 @@
       "attack": 50,
       "defense": 50,
       "speed": 25,
-      "canEvolve": "True"
+      "canEvolve": "True",
+      "movePool": ["TESTING-D", "TESTING-S"]
     }
     "Chither": {
       "name": "Chither",
@@ -34,8 +37,18 @@
       "attack": 45,
       "defense": 45,
       "speed": 45,
-      "canEvolve": "True"
+      "canEvolve": "True",
+      "movePool": ["TESTING-D", "TESTING-S"]
     }
+    "TESTING": {
+      "name": "TESTING",
+      "court": "",
+      "hp": 100,
+      "attack": 100,
+      "defense": 100,
+      "speed": 100,
+      "canEvolve": "False",
+      "movePool": ["TESTING-D", "TESTING-S"]
   ]
 }
 
