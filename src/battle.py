@@ -1,4 +1,6 @@
+#Importing important methods from other programs within the main file.
 import src.oop
+import src.table_manipulation
 
 playerAction = 0
 
