@@ -55,6 +55,21 @@ class InPlay_Faerie(Faerie):
       print("Your", self.Name, "got a kill! Nice!")
 
 
+
+class Entity:
+  def __init__(self, name):
+    Entity.Defeated = False
+    Entity.Party = [NULL]*6
+    Entity.Name = name
+
+class Player(Entity):
+  def __init__(self, name, item, bag):
+    Entity.__init__(self, name)
+    Player.equippedItem = item
+    Player.Inventory = bag
+    
+
+
 #Actual testing. How statlines appear when going through the formulas.
 test1 = InPlay_Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False", 0, [])
 test2 = InPlay_Faerie("TEST", 2, "NULL", 80, 80, 80, 80, "False", 0, [])
