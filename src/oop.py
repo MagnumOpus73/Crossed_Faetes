@@ -47,6 +47,7 @@ class InPlay_Faerie(Faerie):
       self.currentHP = self.HP
 
   def LevelUp(self):
+    self.Kills += 1
     if self.Level < 5 and self.Kills == (self.Level * 5):
       self.Kills = 0
       self.Level = self.Level + 1
@@ -58,9 +59,13 @@ class InPlay_Faerie(Faerie):
 
 class Entity:
   def __init__(self, name):
-    Entity.Defeated = False
-    Entity.Party = [NULL]*6
-    Entity.Name = name
+    self.Defeated = False
+    self.Party = [NULL]*6
+    self.Name = name
+    self.ValidTeamMember = self.Party
+
+  def FaerieDefeated(self):
+    self.ValidTeamMember.pop(0)
 
 class Player(Entity):
   def __init__(self, name, item, bag):
