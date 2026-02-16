@@ -2,6 +2,10 @@
 import src.oop
 import src.table_manipulation
 
+Player_Faerie = InPlay_Faerie()
+
+
+
 playerAction = 0
 
 def damage(power, level, attack, enemy_defense):
@@ -13,7 +17,7 @@ def start_of_turn(turn_count, self):
     self.currentHP = takeDamage((1/8 * self.currentHP), self)
     self.Burning -= 1
   elif self.Poisoned > 0:
-    self.currentHP = takeDamage((1/16 * self.currentHP * (4 - self.Poisoned)), self)
+    self.currentHP = takeDamage((1/16 * self.currentHP * self.Poisoned), self)
     self.Poisoned -= 1
   elif self.Regrowing > 0:
     self.currentHP = takeDamage((-1 * (1/8 * self.currentHP), self))
@@ -43,15 +47,16 @@ while opponent.currentHealth != 0 and player.currentHealth != 0:
     else:
       print("Invalid input: Try Again.")
       playerAction = 0
-if player.currentHealth == 0:
-  if player.ValidTeamNumber == 0:
+if Player.currentHealth == 0:
+  if Player.ValidTeamNumber == 0:
     #Player Loses
-  elif player.ValidTeamNumber > 0:
+  elif Player.ValidTeamNumber > 0:
     #Player sends out next member.
 
-if opponent.currentHealth == 0:
-  if opponent.ValidTeamNumber == 0:
+if Opponent.currentHealth == 0:
+  InPlay_Faerie.LevelUp(Player_Faerie)
+  if Opponent.ValidTeamNumber == 0:
     #Player Wins.
-  elif opponent.ValidTeamNumber > 0:
+  elif Opponent.ValidTeamNumber > 0:
     #Opponent sends out next member.
 
