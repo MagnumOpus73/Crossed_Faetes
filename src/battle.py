@@ -2,6 +2,9 @@
 import src.oop
 import src.table_manipulation
 
+Test_Player = Player("Test_Player", "NULL", [])
+
+
 Player_Faerie = InPlay_Faerie()
 
 
