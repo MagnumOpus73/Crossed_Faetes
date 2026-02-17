@@ -63,9 +63,11 @@ class Entity:
     self.Party = [NULL]*6
     self.Name = name
     self.ValidTeamMember = self.Party
+    self.ValidTeamNumber = self.ValidTeamMember.count()
 
   def FaerieDefeated(self):
     self.ValidTeamMember.pop(0)
+    self.ValidTeamNumber -= 1
 
 class Player(Entity):
   def __init__(self, name, item, bag):
