@@ -1,3 +1,9 @@
+#Potentially necessary libraries/other functions
+import json
+import src.table_manipulation
+import pathlib from Path
+
+
 class Faerie:
   def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, movePool):
     self.Name = name
@@ -55,6 +61,15 @@ class InPlay_Faerie(Faerie):
     else:
       print("Your", self.Name, "got a kill! Nice!")
 
+
+class JSON_Faeries:
+  def __init__(self, file_path = "monsters.json"):
+    self.filePath = Path(file_path)
+    self.data = load_json(self.filePath)
+
+def display(self, file_path = "monsters.json"):
+  print(self.data)
+  
 
 
 class Entity:
