@@ -1,7 +1,7 @@
 #Potentially necessary libraries/other functions
 import json
 import src.table_manipulation
-import pathlib from Path
+from pathlib import Path
 
 
 class Faerie:
@@ -75,7 +75,7 @@ def display(self, file_path = "monsters.json"):
 class Entity:
   def __init__(self, name):
     self.Defeated = False
-    self.Party = [NULL]*6
+    self.Party = [None]*6
     self.Name = name
     self.ValidTeamMember = self.Party
     self.ValidTeamNumber = self.ValidTeamMember.count()

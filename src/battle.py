@@ -12,7 +12,7 @@ Player_Faerie = InPlay_Faerie()
 playerAction = 0
 
 def damage(power, level, attack, enemy_defense):
-  return(((2 * (level * 20) + 2) * power * (attack/enemy_defense))
+  return((2 * (level * 20) + 2) * power * (attack/enemy_defense))
 
 def start_of_turn(turn_count, self):
   turn_count += 0.5
@@ -27,10 +27,10 @@ def start_of_turn(turn_count, self):
     self.Regrowing -= 1
   elif self.Withering > 0:
     self.Withering -= 1
-     if self.Withering > 0:
-       print("You see your monster continue to wither away. ", self.Withering + "turns remaining.")
-     else:
-       self.currentHP = 0
+    if self.Withering > 0:
+      print("You see your monster continue to wither away. ", self.Withering + "turns remaining.")
+    else:
+      self.currentHP = 0
     
   return turn_count
 
@@ -42,24 +42,23 @@ while opponent.currentHealth != 0 and player.currentHealth != 0:
   while playerAction == 0:
     playerAction = input("Would you like to attack (A), use an item(I), or flee(F)?").upper
     if playerAction == "A":
-
+      print("Not done yet.")
     elif playerAction == "I":
-
+      print("Not done yet.")
     elif playerAction == "F":
-
+      print("Not done yet.")
     else:
       print("Invalid input: Try Again.")
       playerAction = 0
 if Player.currentHealth == 0:
   if Player.ValidTeamNumber == 0:
-    #Player Loses
+    print("Loss")
   elif Player.ValidTeamNumber > 0:
-    #Player sends out next member.
+    print("Next up!")
 
 if Opponent.currentHealth == 0:
   InPlay_Faerie.LevelUp(Player_Faerie)
   if Opponent.ValidTeamNumber == 0:
-    #Player Wins.
+    print("Win.")
   elif Opponent.ValidTeamNumber > 0:
-    #Opponent sends out next member.
-
+    print("Next enemy.")
