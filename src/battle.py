@@ -1,6 +1,6 @@
 #Importing important methods from other programs within the main file.
-import src.oop
-import src.table_manipulation
+from src import oop
+from src import table_manipulation
 
 Test_Player = Player("Test_Player", "NULL", [])
 
