@@ -7,8 +7,6 @@ Test_Player = Player("Test_Player", "NULL", [])
 
 Player_Faerie = InPlay_Faerie()
 
-
-
 playerAction = 0
 
 def damage(power, level, attack, enemy_defense):
@@ -31,34 +29,34 @@ def start_of_turn(turn_count, self):
       print("You see your monster continue to wither away. ", self.Withering + "turns remaining.")
     else:
       self.currentHP = 0
-    
   return turn_count
 
 
 
+def battle():
+  turn_count = 0
+  while opponent.currentHealth != 0 and player.currentHealth != 0:
+    start_of_turn(turn_count)
+    while playerAction == 0:
+      playerAction = input("Would you like to attack (A), use an item(I), or flee(F)?").upper  
+      if playerAction == "A":
+        print("Not done yet.")
+      elif playerAction == "I":
+        print("Not done yet.")
+      elif playerAction == "F":
+        print("Not done yet.")
+      else:
+        print("Invalid input: Try Again.")
+        playerAction = 0
+  if Player.currentHealth == 0:
+    if Player.ValidTeamNumber == 0:
+      print("Loss")
+    elif Player.ValidTeamNumber > 0:
+      print("Next up!")
 
-while opponent.currentHealth != 0 and player.currentHealth != 0:
-  start_of_turn(turn_count)
-  while playerAction == 0:
-    playerAction = input("Would you like to attack (A), use an item(I), or flee(F)?").upper
-    if playerAction == "A":
-      print("Not done yet.")
-    elif playerAction == "I":
-      print("Not done yet.")
-    elif playerAction == "F":
-      print("Not done yet.")
-    else:
-      print("Invalid input: Try Again.")
-      playerAction = 0
-if Player.currentHealth == 0:
-  if Player.ValidTeamNumber == 0:
-    print("Loss")
-  elif Player.ValidTeamNumber > 0:
-    print("Next up!")
-
-if Opponent.currentHealth == 0:
-  InPlay_Faerie.LevelUp(Player_Faerie)
-  if Opponent.ValidTeamNumber == 0:
-    print("Win.")
-  elif Opponent.ValidTeamNumber > 0:
-    print("Next enemy.")
+  if Opponent.currentHealth == 0:
+    InPlay_Faerie.LevelUp(Player_Faerie)
+    if Opponent.ValidTeamNumber == 0:
+      print("Win.")
+    elif Opponent.ValidTeamNumber > 0:
+      print("Next enemy.")
