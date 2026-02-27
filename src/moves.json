@@ -1,12 +1,12 @@
 {
   "moves": [
-    "TESTING-D": {
+    "TESTING-D", {
       "name": "TESTING-D",
       "category": "Damage",
       "power": 50,
       "accuracy": 100
-    }
-    "TESTING-S": {
+    },
+    "TESTING-S", {
     "name": "TESTING-S",
     "category": "Status",
     "power": 0,

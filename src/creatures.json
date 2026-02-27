@@ -1,6 +1,6 @@
 {
   "faeries": [
-    "Pyree": {
+    "Pyree", {
       "name": "Pyree",
       "court": "Summer", 
       "hp": 30,
@@ -9,8 +9,8 @@
       "speed": 55,
       "canEvolve": "True",
       "movePool": ["TESTING-D", "TESTING-S"]
-    }
-    "Rimekin": {
+    },
+    "Rimekin", {
       "name": "Rimekin",
       "court": "Winter",
       "hp": 30,
@@ -19,8 +19,8 @@
       "speed": 65,
       "canEvolve": "True",
       "movePool": ["TESTING-D", "TESTING-S"]
-    }
-    "Evergrow": {
+    },
+    "Evergrow", {
       "name": "Evergrow",
       "court": "Spring",
       "hp": 55,
@@ -29,8 +29,8 @@
       "speed": 25,
       "canEvolve": "True",
       "movePool": ["TESTING-D", "TESTING-S"]
-    }
-    "Chither": {
+    },
+    "Chither", {
       "name": "Chither",
       "court": "Autumn",
       "hp": 45,
@@ -39,8 +39,8 @@
       "speed": 45,
       "canEvolve": "True",
       "movePool": ["TESTING-D", "TESTING-S"]
-    }
-    "TESTING": {
+    },
+    "Scott Cawthon", {
       "name": "TESTING",
       "court": "",
       "hp": 100,
@@ -49,6 +49,7 @@
       "speed": 100,
       "canEvolve": "False",
       "movePool": ["TESTING-D", "TESTING-S"]
+    }
   ]
 }
 
