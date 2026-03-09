@@ -1,7 +1,7 @@
 #Potentially necessary libraries/other functions
 import json
-from src import table_manipulation
-from pathlib import Path
+from . import table_manipulation as f
+import pathlib
 
 
 class Faerie:
@@ -64,8 +64,8 @@ class InPlay_Faerie(Faerie):
 
 class JSON_Faeries:
   def __init__(self, file_path = "monsters.json"):
-    self.filePath = Path(file_path)
-    self.data = loadJSON(Path(file_path))
+    self.filePath = pathlib.Path(file_path)
+    self.data = f.loadJSON(pathlib.Path(file_path))
 
 def display(self, file_path = "monsters.json"):
   print(self.data)
