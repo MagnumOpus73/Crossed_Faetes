@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 
+
 #Important functions for table manipulations
 def loadJSON(filepath):
   with open(filepath, "r") as f:

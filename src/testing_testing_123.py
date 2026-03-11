@@ -1,4 +1,9 @@
+import json
+import pathlib
 import table_manipulation as t
 import oop as o
 
-print(t.loadJSON(filepath="creatures.json"))
+test = (t.loadJSON(filepath = "./src/creatures.json"))
+print(test)
+
+

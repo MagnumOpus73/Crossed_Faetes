@@ -1,6 +1,6 @@
 #Potentially necessary libraries/other functions
 import json
-from . import table_manipulation as t
+import table_manipulation as t
 import pathlib
 
 
