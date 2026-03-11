@@ -1,6 +1,6 @@
 #Importing important methods from other programs within the main file.
 from . import oop as o
-from . import table_manipulation as f
+from . import table_manipulation as t
 
 Test_Player = o.Player("Test_Player", "NULL", [])
 
