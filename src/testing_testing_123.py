@@ -4,6 +4,5 @@ import table_manipulation as t
 import oop as o
 
 test = (t.loadJSON(filepath = "./src/creatures.json"))
-print(test)
-
-
+for i in test["faeries"]:
+    print(test["faeries"][i]["name"])
