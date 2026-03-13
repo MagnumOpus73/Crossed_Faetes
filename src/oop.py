@@ -5,7 +5,7 @@ import pathlib
 
 
 class Faerie:
-  def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, movePool):
+  def __init__(self, name, court, hp, attack, defense, speed, canEvolve, movePool):
     self.Name = name
     self.Court = court
     self.baseHP = hp
@@ -13,30 +13,26 @@ class Faerie:
     self.baseDefense = defense
     self.baseSpeed = speed
     self.canEvolve = canEvolve
-    self.HP = round((((hp * 2) + (level*20))/160) + (level * 20) + 25)   #Turning base stats to actual stats via Mathematics.
-    self.Attack = round((((attack * 2) + (level*20))/10) + (level*20) + 25)
-    self.Defense = round((((defense * 2) + (level*20))/10) + (level*20) + 25)
-    self.Speed = round((((speed * 2) + (level*20))/10) + (level*20) + 25)
     self.Movepool = []
 #Function for later and for testing.  
   def display(self):
     print(self.Name)
-    print(self.Level)
     print(self.Court)
-    print(self.baseHP)
-    print(self.HP)
+    print(self.baseHP, self.HP)
     print(self.baseAttack)
-    print(self.Attack)
     print(self.baseDefense)
-    print(self.Defense)
     print(self.baseSpeed)
-    print(self.Speed)
+    print(self.Movepool)
     
 #Split between the class for database use and the ones being used by the user and enemies.    
 class InPlay_Faerie(Faerie):
   def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, killCount, movePool):
     Faerie.__init__(self, name, level, court, hp, attack, defense, speed, canEvolve, movePool)
     self.Level = level
+    self.HP = round((((hp * 2) + (level*20))/160) + (level * 20) + 25)   #Turning base stats to actual stats via Mathematics.
+    self.Attack = round((((attack * 2) + (level*20))/10) + (level*20) + 25)
+    self.Defense = round((((defense * 2) + (level*20))/10) + (level*20) + 25)
+    self.Speed = round((((speed * 2) + (level*20))/10) + (level*20) + 25)
     self.Kills = killCount
     self.currentHP = self.HP
     self.Fainted = False
@@ -60,14 +56,23 @@ class InPlay_Faerie(Faerie):
       print("Your", self.Name, "levelled up!")
     else:
       print("Your", self.Name, "got a kill! Nice!")
+    
+    def playerDisplay(self):
+      print(self.Name)
+      print(self.Court)
+      print(self.baseHP, self.HP)
+      print(self.baseAttack, self.Attack)
+      print(self.baseDefense, self.Defense)
+      print(self.baseSpeed, self.Speed)
+      print(self.Movepool)
 
 
 class JSON_Faeries:
-  def __init__(self, file_path = "monsters.json"):
+  def __init__(self, file_path = "creatures.json"):
     self.filePath = pathlib.Path(file_path)
     self.data = t.loadJSON(pathlib.Path(file_path))
 
-def display(self, file_path = "monsters.json"):
+def display(self, file_path = "creatures.json"):
   print(self.data)
   
 
