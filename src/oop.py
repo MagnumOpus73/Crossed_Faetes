@@ -13,9 +13,10 @@ class Faerie:
     self.baseDefense = defense
     self.baseSpeed = speed
     self.canEvolve = canEvolve
-    self.Movepool = []
+    self.Movepool = movePool
 #Function for later and for testing.  
   def display(self):
+    print()
     print(self.Name)
     print(self.Court)
     print(self.baseHP)
@@ -23,6 +24,7 @@ class Faerie:
     print(self.baseDefense)
     print(self.baseSpeed)
     print(self.Movepool)
+    print()
     
 #Split between the class for database use and the ones being used by the user and enemies.    
 class InPlay_Faerie(Faerie):

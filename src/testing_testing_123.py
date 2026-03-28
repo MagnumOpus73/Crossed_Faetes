@@ -10,9 +10,12 @@ for i in range(len(test["faeries"])):
             print(test["faeries"][i])
             attempt = test["faeries"][i]
 
-
+print(test)
+print(attempt)
 
 test_Faerie = o.InPlay_Faerie(attempt["name"], 1, attempt["court"], attempt["hp"], attempt["attack"], attempt["defense"], attempt["speed"], attempt["canEvolve"], 0, attempt["movePool"])
+
+print(test_Faerie.Movepool)
 
 test_Faerie.display()
 
