@@ -12,6 +12,10 @@ for i in range(len(test["faeries"])):
 
 
 
-test_Faerie = o.Faerie(attempt["name"], attempt["court"], attempt["hp"], attempt["attack"], attempt["defense"], attempt["speed"], attempt["canEvolve"], attempt["movePool"])
+test_Faerie = o.InPlay_Faerie(attempt["name"], 1, attempt["court"], attempt["hp"], attempt["attack"], attempt["defense"], attempt["speed"], attempt["canEvolve"], 0, attempt["movePool"])
 
 test_Faerie.display()
+
+test_Faerie.takeDamage(test_Faerie, 20)
+
+test_Faerie.battleDisplay(test_Faerie)

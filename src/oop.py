@@ -18,7 +18,7 @@ class Faerie:
   def display(self):
     print(self.Name)
     print(self.Court)
-    print(self.baseHP, self.HP)
+    print(self.baseHP)
     print(self.baseAttack)
     print(self.baseDefense)
     print(self.baseSpeed)
@@ -27,7 +27,7 @@ class Faerie:
 #Split between the class for database use and the ones being used by the user and enemies.    
 class InPlay_Faerie(Faerie):
   def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, killCount, movePool):
-    Faerie.__init__(self, name, level, court, hp, attack, defense, speed, canEvolve, movePool)
+    Faerie.__init__(self, name, court, hp, attack, defense, speed, canEvolve, movePool)
     self.Level = level
     self.HP = round((((hp * 2) + (level*20))/160) + (level * 20) + 25)   #Turning base stats to actual stats via Mathematics.
     self.Attack = round((((attack * 2) + (level*20))/10) + (level*20) + 25)
@@ -41,18 +41,23 @@ class InPlay_Faerie(Faerie):
     self.Withering = 0
     self.Regrowing = 0    
 
-  def takeDamage(damage, self):
+  def takeDamage(self, damage):
     self.currentHP = self.currentHP - damage
     if self.currentHP <= 0:
       self.Fainted = True
     elif self.currentHP > self.HP:
       self.currentHP = self.HP
 
+  def Evolve(self):
+    if self.canEvolve == "True" and self.Level == 5:
+      print("Your", self.Name, "has ascended to a higher form!")
+
   def LevelUp(self):
     self.Kills += 1
     if self.Level < 5 and self.Kills == (self.Level * 5):
       self.Kills = 0
       self.Level = self.Level + 1
+      self.Evolve()
       print("Your", self.Name, "levelled up!")
     else:
       print("Your", self.Name, "got a kill! Nice!")
@@ -65,7 +70,11 @@ class InPlay_Faerie(Faerie):
       print(self.baseDefense, self.Defense)
       print(self.baseSpeed, self.Speed)
       print(self.Movepool)
-
+  
+  def battleDisplay(self):
+    print(self.currentHP,"/", self.HP)
+    print()
+    print(self.Movepool)
 
 class JSON_Faeries:
   def __init__(self, file_path = "creatures.json"):
