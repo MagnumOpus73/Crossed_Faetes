@@ -10,6 +10,16 @@
       "canEvolve": "True",
       "movePool": ["TESTING-D", "TESTING-S"]
     },
+    "Sprire", {
+      "name": "Sprire",
+      "court": "Summer",
+      "hp": 35,
+      "attack": 70,
+      "defense": 50,
+      "speed": 65,
+      "canEvolve": "True",
+      "movePool": ["TESTING-D", "TESTING-S"]
+    },
     "Rimekin", {
       "name": "Rimekin",
       "court": "Winter",

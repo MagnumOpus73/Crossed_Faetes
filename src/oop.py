@@ -29,10 +29,10 @@ class InPlay_Faerie(Faerie):
   def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, killCount, movePool):
     Faerie.__init__(self, name, court, hp, attack, defense, speed, canEvolve, movePool)
     self.Level = level
-    self.HP = round((((hp * 2) + (level*20))/160) + (level * 20) + 25)   #Turning base stats to actual stats via Mathematics.
-    self.Attack = round((((attack * 2) + (level*20))/10) + (level*20) + 25)
-    self.Defense = round((((defense * 2) + (level*20))/10) + (level*20) + 25)
-    self.Speed = round((((speed * 2) + (level*20))/10) + (level*20) + 25)
+    self.HP = round((((hp * 2) + (level*10))/160) + (level * 10) + 25)   #Turning base stats to actual stats via Mathematics.
+    self.Attack = round((((attack * 2) + (level*10))/10) + (level*10) + 25)
+    self.Defense = round((((defense * 2) + (level*10))/10) + (level*10) + 25)
+    self.Speed = round((((speed * 2) + (level*10))/10) + (level*10) + 25)
     self.Kills = killCount
     self.currentHP = self.HP
     self.Fainted = False
@@ -45,6 +45,8 @@ class InPlay_Faerie(Faerie):
     self.currentHP = self.currentHP - damage
     if self.currentHP <= 0:
       self.Fainted = True
+      self.currentHP = 0
+      print(self.Name, "has fainted!")
     elif self.currentHP > self.HP:
       self.currentHP = self.HP
 
@@ -54,7 +56,7 @@ class InPlay_Faerie(Faerie):
 
   def LevelUp(self):
     self.Kills += 1
-    if self.Level < 5 and self.Kills == (self.Level * 5):
+    if self.Level < 10 and self.Kills == (self.Level * 2):
       self.Kills = 0
       self.Level = self.Level + 1
       self.Evolve()
@@ -72,7 +74,7 @@ class InPlay_Faerie(Faerie):
       print(self.Movepool)
   
   def battleDisplay(self):
-    print(self.currentHP,"/", self.HP)
+    print("Current HP:", str(self.currentHP) + "/" + str(self.HP))
     print()
     print(self.Movepool)
 
@@ -81,7 +83,7 @@ class JSON_Faeries:
     self.filePath = pathlib.Path(file_path)
     self.data = t.loadJSON(pathlib.Path(file_path))
 
-def display(self, file_path = "creatures.json"):
+def displayJSON(self, file_path = "creatures.json"):
   print(self.data)
   
 

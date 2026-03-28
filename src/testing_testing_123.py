@@ -16,6 +16,6 @@ test_Faerie = o.InPlay_Faerie(attempt["name"], 1, attempt["court"], attempt["hp"
 
 test_Faerie.display()
 
-test_Faerie.takeDamage(test_Faerie, 20)
+test_Faerie.takeDamage(20)
 
-test_Faerie.battleDisplay(test_Faerie)
+test_Faerie.battleDisplay()
