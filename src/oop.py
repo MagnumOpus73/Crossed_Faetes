@@ -2,6 +2,7 @@
 import json
 import table_manipulation as t
 import pathlib
+import random as r
 
 
 class Faerie:
@@ -88,6 +89,22 @@ class JSON_Faeries:
 def displayJSON(self, file_path = "creatures.json"):
   print(self.data)
   
+
+class move:
+  def __init__(self, name, type, power, accuracy):
+    self.Name = name
+    self.Power = power
+    self.Type = type
+    self.Accuracy = accuracy
+  
+  def getType(self):
+    return self.Type
+
+  def getPower(self):
+    return self.Power
+  
+  def getName(self):
+    return self.Name
 
 
 class Entity:

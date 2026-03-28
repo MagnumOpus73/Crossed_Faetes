@@ -2,13 +2,13 @@
   "moves": [
     "TESTING-D", {
       "name": "TESTING-D",
-      "category": "Damage",
+      "type": "Damage",
       "power": 50,
       "accuracy": 100
     },
     "TESTING-S", {
     "name": "TESTING-S",
-    "category": "Status",
+    "type": "Status",
     "power": 0,
     "accuracy": 100
     }
