@@ -33,3 +33,20 @@ test_Faerie.display()
 test_Faerie.takeDamage(20)
 
 test_Faerie.battleDisplay()
+
+test_Faerie.playerDisplay()
+
+test_FaeriesE = (t.loadJSON(filepath = "./src/creatures.json"))
+for i in range(len(test_FaeriesE["faeries"])):
+    if i % 2 != 0:
+        if test_FaeriesE["faeries"][i]["name"] == "Rimekin":
+            print(test_FaeriesE["faeries"][i])
+            attempt_FE = test_FaeriesE["faeries"][i]
+
+test_enemy = o.InPlay_Faerie(attempt_FE["name"], 1, attempt_FE["court"], attempt_FE["hp"], attempt_FE["attack"], attempt_FE["defense"], attempt_FE["speed"], attempt_FE["canEvolve"], 0, attempt_FE["movePool"])
+
+test_Faerie.takeDamage(o.calculate_damage(test_Move.getPower(), test_Faerie.Level, test_Faerie.Attack, test_enemy.Defense))
+
+test_Faerie.battleDisplay()
+print()
+test_enemy.battleDisplay()

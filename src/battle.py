@@ -5,12 +5,12 @@ from . import table_manipulation as t
 Test_Player = o.Player("Test_Player", "NULL", [])
 
 
+
 Player_Faerie = o.InPlay_Faerie()
 
 playerAction = 0
 
-def damage(power, level, attack, enemy_defense):
-  return((2 * (level * 20) + 2) * power * (attack/enemy_defense))
+
 
 def start_of_turn(turn_count, self):
   turn_count += 0.5

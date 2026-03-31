@@ -44,6 +44,30 @@ class InPlay_Faerie(Faerie):
     self.Withering = 0
     self.Regrowing = 0    
 
+  def getAttack(self):
+    return self.Attack
+  
+  def getDefense(self):
+    return self.Defense
+  
+  def getSpeed(self):
+    return self.Speed
+  
+  def getHP(self):
+    return self.HP
+  
+  def Evolve(self):
+    if self.canEvolve == "True" and self.Level >= 10:
+      new_Faerie = (t.loadJSON(filepath = "./src/creatures.json"))
+      for i in range(len(new_Faerie["faeries"])):
+        if i % 2 != 0:
+          if new_Faerie["faeries"][i]["name"] == self.Name:
+            print(new_Faerie["faeries"][i+2])
+            self.__init__(new_Faerie["faeries"][i+2])
+
+
+
+
   def takeDamage(self, damage):
     self.currentHP = self.currentHP - damage
     if self.currentHP <= 0:
@@ -67,14 +91,14 @@ class InPlay_Faerie(Faerie):
     else:
       print("Your", self.Name, "got a kill! Nice!")
     
-    def playerDisplay(self):
-      print(self.Name)
-      print(self.Court)
-      print(self.baseHP, self.HP)
-      print(self.baseAttack, self.Attack)
-      print(self.baseDefense, self.Defense)
-      print(self.baseSpeed, self.Speed)
-      print(self.Movepool)
+  def playerDisplay(self):
+    print(self.Name)
+    print(self.Court)
+    print(self.baseHP, self.HP)
+    print(self.baseAttack, self.Attack)
+    print(self.baseDefense, self.Defense)
+    print(self.baseSpeed, self.Speed)
+    print(self.Movepool)
   
   def battleDisplay(self):
     print("Current HP:", str(self.currentHP) + "/" + str(self.HP))
@@ -125,6 +149,11 @@ class Player(Entity):
     Player.equippedItem = item
     Player.Inventory = bag
     
+
+
+def calculate_damage(power, level, attack, enemy_defense):
+  return((2 * (level * 20) + 2) * power * (attack/enemy_defense))
+
 
 
 #Actual testing. How statlines appear when going through the formulas.

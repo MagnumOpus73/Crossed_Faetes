@@ -17,7 +17,7 @@
       "attack": 70,
       "defense": 50,
       "speed": 65,
-      "canEvolve": "True",
+      "canEvolve": "False",
       "movePool": ["TESTING-D", "TESTING-S"]
     },
     "Rimekin", {
