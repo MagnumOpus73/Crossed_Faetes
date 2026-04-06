@@ -6,7 +6,7 @@ import random as r
 
 
 class Faerie:
-  def __init__(self, name, court, hp, attack, defense, speed, canEvolve, movePool):
+  def __init__(self, name, court, hp, attack, defense, speed, canEvolve, evolved, movePool):
     self.Name = name
     self.Court = court
     self.baseHP = hp
@@ -14,6 +14,7 @@ class Faerie:
     self.baseDefense = defense
     self.baseSpeed = speed
     self.canEvolve = canEvolve
+    self.Evolved = evolved
     self.Movepool = movePool
 #Function for later and for testing.  
   def display(self):
@@ -29,8 +30,8 @@ class Faerie:
     
 #Split between the class for database use and the ones being used by the user and enemies.    
 class InPlay_Faerie(Faerie):
-  def __init__(self, name, court, hp, attack, defense, speed, canEvolve, movePool, level, killCount):
-    Faerie.__init__(self, name, court, hp, attack, defense, speed, canEvolve, movePool)
+  def __init__(self, name, court, hp, attack, defense, speed, canEvolve, evolved, movePool, level, killCount):
+    Faerie.__init__(self, name, court, hp, attack, defense, speed, canEvolve, evolved, movePool)
     self.Level = level
     self.HP = round((((hp*2) + (level*10))/160)+(level * 10)+25)   #Turning base stats to actual stats via Mathematics.
     self.Attack = round((((attack * 2) + (level*10))/10) + (level*10) + 25)
@@ -42,7 +43,8 @@ class InPlay_Faerie(Faerie):
     self.Poisoned = 0
     self.Burning = 0
     self.Withering = 0
-    self.Regrowing = 0    
+    self.Regrowing = 0
+    self.Protected = 1    
 
   def getAttack(self):
     return self.Attack
@@ -90,7 +92,10 @@ class InPlay_Faerie(Faerie):
       print("Your", self.Name, "levelled up!")
     else:
       print("Your", self.Name, "got a kill! Nice!")
-    
+
+  def getProtected(self):
+    return self.Protected
+
   def playerDisplay(self):
     print(self.Name)
     print(self.Court)
@@ -137,7 +142,7 @@ class Entity:
     self.Party = [None]*6
     self.Name = name
     self.ValidTeamMember = self.Party
-    self.ValidTeamNumber = self.ValidTeamMember.count()
+    self.ValidTeamNumber = len(self.ValidTeamMember)
 
   def FaerieDefeated(self):
     self.ValidTeamMember.pop(0)
@@ -151,8 +156,8 @@ class Player(Entity):
     
 
 
-def calculate_damage(power, level, attack, enemy_defense):
-  return((2 * (level * 20) + 2) * power * (attack/enemy_defense))
+def calculate_damage(power, level, attack, enemy_defense, protection):
+  return(((2 * (level * 20) + 2) * power * (attack/enemy_defense)) * protection)
 
 
 

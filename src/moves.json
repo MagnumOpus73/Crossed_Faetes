@@ -11,6 +11,55 @@
     "type": "Status",
     "power": 0,
     "accuracy": 100
-    }
+    },
+    "Spark", {
+      "name": "Spark",
+      "type": "Damage",
+      "power": 40,
+      "accuracy": 100
+    },
+    "Hot Coals", {
+      "name": "Hot Coals",
+      "type": "Status",
+      "power": 0,
+      "accuracy": 100
+    },
+    "Light Up", {
+      "name": "Light Up",
+      "type": "Status",
+      "power": 0,
+      "accuracy": 100
+    },
+    "Glowing Wick", {
+      "name": "Glowing Wick",
+      "type": "Status",
+      "power": 20,
+      "accuracy": 100
+    },
+    "Funeral Pyre", {
+      "name": "Funeral Pyre",
+      "type": "Damage",
+      "power": 60,
+      "accuracy": 100
+    },
+    "Combustible", {
+      "name": "Combustible",
+      "type": "Status",
+      "power": 0,
+      "accuracy": 80
+    },
+    "Enflame", {
+      "name": "Enflame",
+      "type": "Status",
+      "power": 0,
+      "accuracy": 90
+    },
+    "Accelerant", {
+      "name": "Accelerant",
+      "type": "Damage",
+      "power": 0,
+      "accuracy": 100
+     }
+     
   ]
 }

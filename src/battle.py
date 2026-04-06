@@ -1,6 +1,7 @@
 #Importing important methods from other programs within the main file.
-from . import oop as o
-from . import table_manipulation as t
+import oop as o
+import table_manipulation as t
+import random as r
 
 Test_Player = o.Player("Test_Player", "NULL", [])
 
@@ -10,8 +11,11 @@ Player_Faerie = o.InPlay_Faerie()
 
 playerAction = 0
 
-
-
+def getOpponent():
+  randomID = r.randint(0, (len(t.loadJSON(filepath = "./src/creatures.json")["faeries"])/2))
+  opponent = t.loadJSON(filepath = "./src/creatures.json")["faeries"][randomID*2]
+  opponent.display()
+  return opponent
 def start_of_turn(turn_count, self):
   turn_count += 0.5
   if self.Burning > 0:
@@ -60,3 +64,8 @@ def battle():
       print("Win.")
     elif o.Opponent.ValidTeamNumber > 0:
       print("Next enemy.")
+
+
+
+
+getOpponent()

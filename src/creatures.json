@@ -8,7 +8,8 @@
       "defense": 35,
       "speed": 55,
       "canEvolve": "True",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "evolved": "False",
+      "movePool": ["Spark", "Hot Coals", "Light Up", "Glowing Wick"]
     },
     "Sprire", {
       "name": "Sprire",
@@ -18,7 +19,8 @@
       "defense": 50,
       "speed": 65,
       "canEvolve": "False",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "evolved": "True",
+      "movePool": ["Funeral Pyre", "Combustible", "Enflame", "Accelerant"]
     },
     "Rimekin", {
       "name": "Rimekin",
@@ -28,6 +30,18 @@
       "defense": 40,
       "speed": 65,
       "canEvolve": "True",
+      "evolved": "False",
+      "movePool": ["TESTING-D", "TESTING-S"]
+    },
+    "Boarfrost", {
+      "name": "Boarfrost",
+      "court": "Winter",
+      "hp": 35,
+      "attack": 60,
+      "defense": 50,
+      "speed": 70,
+      "canEvolve": "False",
+      "evolved": "True",
       "movePool": ["TESTING-D", "TESTING-S"]
     },
     "Evergrow", {
@@ -38,6 +52,18 @@
       "defense": 50,
       "speed": 25,
       "canEvolve": "True",
+      "evolved": "False",
+      "movePool": ["TESTING-D", "TESTING-S"]
+    },
+    "Eternascend", {
+      "name": "Eternascend",
+      "court": "Spring",
+      "hp": 70,
+      "attack": 60,
+      "defense": 60,
+      "speed": 30,
+      "canEvolve": "False",
+      "evolved": "True",
       "movePool": ["TESTING-D", "TESTING-S"]
     },
     "Chither", {
@@ -48,6 +74,18 @@
       "defense": 45,
       "speed": 45,
       "canEvolve": "True",
+      "evolved": "False",
+      "movePool": ["TESTING-D", "TESTING-S"]
+    },
+    "Twiwilt", {
+      "name": "Twiwilt",
+      "court": "Autumn",
+      "hp": 60,
+      "attack": 60,
+      "defense": 60,
+      "speed": 60,
+      "canEvolve": "False",
+      "evolved": "True",
       "movePool": ["TESTING-D", "TESTING-S"]
     },
     "Jimothy", {
@@ -58,6 +96,7 @@
       "defense": 100,
       "speed": 100,
       "canEvolve": "False",
+      "evolved": "False",
       "movePool": ["TESTING-D", "TESTING-S"]
     }
   ]
