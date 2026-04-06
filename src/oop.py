@@ -29,10 +29,10 @@ class Faerie:
     
 #Split between the class for database use and the ones being used by the user and enemies.    
 class InPlay_Faerie(Faerie):
-  def __init__(self, name, level, court, hp, attack, defense, speed, canEvolve, killCount, movePool):
+  def __init__(self, name, court, hp, attack, defense, speed, canEvolve, movePool, level, killCount):
     Faerie.__init__(self, name, court, hp, attack, defense, speed, canEvolve, movePool)
     self.Level = level
-    self.HP = round((((hp * 2) + (level*10))/160) + (level * 10) + 25)   #Turning base stats to actual stats via Mathematics.
+    self.HP = round((((hp*2) + (level*10))/160)+(level * 10)+25)   #Turning base stats to actual stats via Mathematics.
     self.Attack = round((((attack * 2) + (level*10))/10) + (level*10) + 25)
     self.Defense = round((((defense * 2) + (level*10))/10) + (level*10) + 25)
     self.Speed = round((((speed * 2) + (level*10))/10) + (level*10) + 25)
@@ -58,12 +58,14 @@ class InPlay_Faerie(Faerie):
   
   def Evolve(self):
     if self.canEvolve == "True" and self.Level >= 10:
+      print("Can Evolve!!!")
       new_Faerie = (t.loadJSON(filepath = "./src/creatures.json"))
       for i in range(len(new_Faerie["faeries"])):
         if i % 2 != 0:
           if new_Faerie["faeries"][i]["name"] == self.Name:
-            print(new_Faerie["faeries"][i+2])
-            self.__init__(new_Faerie["faeries"][i+2])
+            print(new_Faerie["faeries"][i+2]["name"])
+            self.__init__(**new_Faerie["faeries"][i+2], level = self.Level, killCount = self.Kills)
+            
 
 
 
@@ -77,9 +79,6 @@ class InPlay_Faerie(Faerie):
     elif self.currentHP > self.HP:
       self.currentHP = self.HP
 
-  def Evolve(self):
-    if self.canEvolve == "True" and self.Level == 5:
-      print("Your", self.Name, "has ascended to a higher form!")
 
   def LevelUp(self):
     self.Kills += 1
@@ -157,9 +156,9 @@ def calculate_damage(power, level, attack, enemy_defense):
 
 
 #Actual testing. How statlines appear when going through the formulas.
-test1 = InPlay_Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False", 0, [])
-test2 = InPlay_Faerie("TEST", 2, "NULL", 80, 80, 80, 80, "False", 0, [])
-test3 = InPlay_Faerie("TEST", 5, "NULL", 80, 80, 80, 80, "False", 0, [])
+#test1 = InPlay_Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False", 0, [])
+#test2 = InPlay_Faerie("TEST", 2, "NULL", 80, 80, 80, 80, "False", 0, [])
+#test3 = InPlay_Faerie("TEST", 5, "NULL", 80, 80, 80, 80, "False", 0, [])
 #InPlay_Faerie.display(test1)
 #print()
 #InPlay_Faerie.display(test2)

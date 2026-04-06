@@ -10,7 +10,7 @@ for i in range(len(test_Faeries["faeries"])):
             print(test_Faeries["faeries"][i])
             attempt_F = test_Faeries["faeries"][i]
 
-Evolve_Test = o.InPlay_Faerie(attempt_F["name"], 11, attempt_F["court"], attempt_F["hp"], attempt_F["attack"], attempt_F["defense"], attempt_F["speed"], attempt_F["canEvolve"], 0, attempt_F["movePool"])
+Evolve_Test = o.InPlay_Faerie(attempt_F["name"], attempt_F["court"], attempt_F["hp"], attempt_F["attack"], attempt_F["defense"], attempt_F["speed"], attempt_F["canEvolve"], attempt_F["movePool"], 10, 0)
 
 Evolve_Test.Evolve()
 
