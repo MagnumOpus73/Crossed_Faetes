@@ -65,6 +65,7 @@ class InPlay_Faerie(Faerie):
           if new_Faerie["faeries"][i]["name"] == self.Name:
             print(new_Faerie["faeries"][i+2]["name"])
             self.__init__(**new_Faerie["faeries"][i+2], level = self.Level, killCount = self.Kills)
+            break
             
 
 

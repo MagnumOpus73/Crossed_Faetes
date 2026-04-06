@@ -14,4 +14,4 @@ Evolve_Test = o.InPlay_Faerie(attempt_F["name"], attempt_F["court"], attempt_F["
 
 Evolve_Test.Evolve()
 
-Evolve_Test.display()
+Evolve_Test.playerDisplay()
