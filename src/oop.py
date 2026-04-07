@@ -170,3 +170,11 @@ def calculate_damage(power, level, attack, enemy_defense, protection):
 #InPlay_Faerie.display(test2)
 #print()
 #InPlay_Faerie.display(test3)
+
+
+def getFaerie(name):
+  new_Faerie = (t.loadJSON(filepath = "./src/creatures.json"))
+  for i in range(len(new_Faerie["faeries"])):
+    if i % 2 != 0:
+      if new_Faerie["faeries"][i]["name"] == name:
+        return new_Faerie["faeries"][i]

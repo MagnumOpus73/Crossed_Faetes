@@ -2,7 +2,6 @@ import json
 import pathlib
 import table_manipulation as t
 import oop as o
-import battle as b
 
 test_Faeries = (t.loadJSON(filepath = "./src/creatures.json"))
 for i in range(len(test_Faeries["faeries"])):
@@ -19,3 +18,4 @@ Evolve_Test.playerDisplay()
 
 print(len(test_Faeries["faeries"]))
 
+print(len(t.loadJSON(filepath = "./src/creatures.json")["faeries"]))

@@ -6,16 +6,22 @@ import random as r
 Test_Player = o.Player("Test_Player", "NULL", [])
 
 
+Player_Faerie = o.getFaerie("Pyree")
 
-Player_Faerie = o.InPlay_Faerie()
 
 playerAction = 0
 
 def getOpponent():
-  randomID = r.randint(0, (len(t.loadJSON(filepath = "./src/creatures.json")["faeries"])/2))
-  opponent = t.loadJSON(filepath = "./src/creatures.json")["faeries"][randomID*2]
+  
+  randomID = r.randint(1, ((len(t.loadJSON(filepath = "./src/creatures.json")["faeries"])-1)/2))
+  randomID = int(randomID) * 2
+  opponent = t.loadJSON(filepath = "./src/creatures.json")["faeries"][randomID]
+  opponent_Faerie = o.InPlay_Faerie(**opponent["faeries"][randomID], level = r.randint(1, 5), killCount = 0)
   opponent.display()
   return opponent
+
+
+
 def start_of_turn(turn_count, self):
   turn_count += 0.5
   if self.Burning > 0:
