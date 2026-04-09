@@ -3,6 +3,18 @@ import oop as o
 import table_manipulation as t
 import random as r
 
+def attack(move_name, attacker, defender):
+  move = o.getMove(move_name)
+  print(attacker.Name, "used", move.getName() + "!")
+  if move.getAccuracy() >= r.randint(1, 100):
+    if move.getType() == "Damage":
+      defender.takeDamage(o.calculate_damage(move.getPower(), attacker.getLevel(), attacker.getAttack(), defender.getDefense()))
+    else:
+      print("Not done yet. - Need to make all status moves do their unique effects.")
+  else:
+    print("But it missed!")
+
+
 Test_Player = o.Player("Test_Player", "NULL", [])
 
 
@@ -12,13 +24,14 @@ Player_Faerie = o.getFaerie("Pyree")
 playerAction = 0
 
 def getOpponent():
-  
-  randomID = r.randint(1, ((len(t.loadJSON(filepath = "./src/creatures.json")["faeries"])-1)/2))
-  randomID = int(randomID) * 2
-  opponent = t.loadJSON(filepath = "./src/creatures.json")["faeries"][randomID]
-  opponent_Faerie = o.InPlay_Faerie(**opponent["faeries"][randomID], level = r.randint(1, 5), killCount = 0)
-  opponent.display()
-  return opponent
+  opponent = (t.loadJSON(filepath = "./src/creatures.json"))
+  randomID = r.randint(1, (int(len(t.loadJSON(filepath = "./src/creatures.json")["faeries"])/2)))
+  randomID = (randomID * 2) - 1
+  print(randomID)
+  opponent_Faerie = opponent["faeries"][randomID]
+  opponent_Faerie = o.InPlay_Faerie(opponent_Faerie["name"], opponent_Faerie["court"], opponent_Faerie["hp"], opponent_Faerie["attack"], opponent_Faerie["defense"], opponent_Faerie["speed"], opponent_Faerie["canEvolve"], opponent_Faerie["evolved"], opponent_Faerie["movePool"], level = 1, killCount = 0)
+  opponent_Faerie.display()
+  return opponent_Faerie
 
 
 
@@ -75,3 +88,5 @@ def battle():
 
 
 getOpponent()
+
+attack("Funeral Pyre", Player_Faerie, getOpponent())

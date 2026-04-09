@@ -24,7 +24,7 @@ print(test_Move.getName())
 
 print(attempt_F)
 
-test_Faerie = o.InPlay_Faerie(attempt_F["name"], 1, attempt_F["court"], attempt_F["hp"], attempt_F["attack"], attempt_F["defense"], attempt_F["speed"], attempt_F["canEvolve"], 0, attempt_F["movePool"])
+test_Faerie = o.InPlay_Faerie(attempt_F["name"], attempt_F["court"], attempt_F["hp"], attempt_F["attack"], attempt_F["defense"], attempt_F["speed"], attempt_F["canEvolve"], attempt_F["movePool"], 1, 0)
 
 print(test_Faerie.Movepool)
 

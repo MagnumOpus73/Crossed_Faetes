@@ -18,4 +18,8 @@ Evolve_Test.playerDisplay()
 
 print(len(test_Faeries["faeries"]))
 
-print(len(t.loadJSON(filepath = "./src/creatures.json")["faeries"]))
+print(len(t.loadJSON(filepath = "./src/creatures.json")["faeries"])/2)
+
+NewMove = o.move(**o.getMove("Funeral Pyre"))
+
+print(NewMove.getName())

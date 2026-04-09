@@ -126,6 +126,18 @@ class move:
     self.Type = type
     self.Accuracy = accuracy
   
+  def displayMove(self):
+    if self.Type == "Attack":
+      print(self.Name)
+      print(self.Type)
+      print("Power: " + str(self.Power))
+      print("Accuracy: " + str(self.Accuracy))
+    else:
+      print(self.Name)
+      print(self.Type)
+      print("Accuracy: " + str(self.Accuracy))
+
+      
   def getType(self):
     return self.Type
 
@@ -178,3 +190,10 @@ def getFaerie(name):
     if i % 2 != 0:
       if new_Faerie["faeries"][i]["name"] == name:
         return new_Faerie["faeries"][i]
+      
+def getMove(name):
+  new_Move = (t.loadJSON(filepath = "./src/moves.json"))
+  for i in range(len(new_Move["moves"])):
+    if i % 2 != 0:
+      if new_Move["moves"][i]["name"] == name:
+        return new_Move["moves"][i]
