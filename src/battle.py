@@ -5,10 +5,14 @@ import random as r
 
 def attack(move_name, attacker, defender):
   move = o.getMove(move_name)
-  print(attacker.Name, "used", move.getName() + "!")
-  if move.getAccuracy() >= r.randint(1, 100):
-    if move.getType() == "Damage":
-      defender.takeDamage(o.calculate_damage(move.getPower(), attacker.getLevel(), attacker.getAttack(), defender.getDefense()))
+  print(attacker.Name, "used", move["name"] + "!")
+  if move["accuracy"] >= r.randint(1, 100):
+    if move["type"] == "Damage":
+      damage = o.calculate_damage(move["power"], attacker.Level, attacker.Attack, defender.Defense, 1)
+      print(damage)
+      defender.takeDamage(damage)
+      attacker.battleDisplay()
+      defender.battleDisplay()
     else:
       print("Not done yet. - Need to make all status moves do their unique effects.")
   else:
@@ -18,19 +22,35 @@ def attack(move_name, attacker, defender):
 Test_Player = o.Player("Test_Player", "NULL", [])
 
 
-Player_Faerie = o.getFaerie("Pyree")
+Player_Faerie = o.InPlay_Faerie(**o.getFaerie("Sprire"), level = 11, killCount = 0)
 
 
 playerAction = 0
 
-def getOpponent():
+def getOpponent(player):
   opponent = (t.loadJSON(filepath = "./src/creatures.json"))
-  randomID = r.randint(1, (int(len(t.loadJSON(filepath = "./src/creatures.json")["faeries"])/2)))
-  randomID = (randomID * 2) - 1
-  print(randomID)
-  opponent_Faerie = opponent["faeries"][randomID]
-  opponent_Faerie = o.InPlay_Faerie(opponent_Faerie["name"], opponent_Faerie["court"], opponent_Faerie["hp"], opponent_Faerie["attack"], opponent_Faerie["defense"], opponent_Faerie["speed"], opponent_Faerie["canEvolve"], opponent_Faerie["evolved"], opponent_Faerie["movePool"], level = 1, killCount = 0)
-  opponent_Faerie.display()
+  repeat = True
+  while repeat == True:
+    randomID = r.randint(1, (int(len(t.loadJSON(filepath = "./src/creatures.json")["faeries"])/2)))
+    randomID = (randomID * 2) - 1
+    print(randomID)
+    opponent_Faerie = opponent["faeries"][randomID]
+    if player.Level != 1:
+      opponent_Faerie = o.InPlay_Faerie(opponent_Faerie["name"], opponent_Faerie["court"], opponent_Faerie["hp"], opponent_Faerie["attack"], opponent_Faerie["defense"], opponent_Faerie["speed"], opponent_Faerie["canEvolve"], opponent_Faerie["evolved"], opponent_Faerie["movePool"], level = r.randint((player.Level - 1), (player.Level + 1)), killCount = 0)
+    else:
+      opponent_Faerie = o.InPlay_Faerie(opponent_Faerie["name"], opponent_Faerie["court"], opponent_Faerie["hp"], opponent_Faerie["attack"], opponent_Faerie["defense"], opponent_Faerie["speed"], opponent_Faerie["canEvolve"], opponent_Faerie["evolved"], opponent_Faerie["movePool"], level = 1, killCount = 0)
+    
+    if opponent_Faerie.Evolved == "True":
+      print("Evolved.")
+    else:
+      print("Unevolved.")
+      break
+  if r.randint(1, 2) == 1:
+    opponent_Faerie.E_Evolve()
+  else:
+    pass
+  print(opponent_Faerie.Name, "is summoned to the field!")
+  opponent_Faerie.playerDisplay()
   return opponent_Faerie
 
 
@@ -56,14 +76,26 @@ def start_of_turn(turn_count, self):
 
 
 
-def battle():
+def battle(Player_Faerie, opponent):
   turn_count = 0
-  while o.opponent.currentHealth != 0 and o.player.currentHealth != 0:
+  start_of_turn(turn_count, Player_Faerie)
+  start_of_turn(turn_count, opponent)
+  while opponent.currentHealth != 0 and Player_Faerie.currentHealth != 0:
     start_of_turn(turn_count)
     while playerAction == 0:
+      Player_Faerie.battleDisplay()
       playerAction = input("Would you like to attack (A), use an item(I), or flee(F)?").upper  
       if playerAction == "A":
-        print("Not done yet.")
+        valid = False
+        while valid == False:
+          print("Which move would you like to use? (Make sure your spelling is exact.)")
+          move = input()
+          try:
+            o.getMove(move), Player_Faerie, opponent
+            valid = True
+          except:
+            print("Invalid move. Try again.")
+
       elif playerAction == "I":
         print("Not done yet.")
       elif playerAction == "F":
@@ -87,6 +119,5 @@ def battle():
 
 
 
-getOpponent()
 
-attack("Funeral Pyre", Player_Faerie, getOpponent())
+attack("Spark", Player_Faerie, getOpponent(Player_Faerie))

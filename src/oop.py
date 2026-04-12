@@ -69,12 +69,19 @@ class InPlay_Faerie(Faerie):
             self.__init__(**new_Faerie["faeries"][i+2], level = self.Level, killCount = self.Kills)
             break
             
-
+  def E_Evolve(self):
+    if self.canEvolve == "True" and self.Level >= 10:
+      new_Faerie = (t.loadJSON(filepath = "./src/creatures.json"))
+      for i in range(len(new_Faerie["faeries"])):
+        if i % 2 != 0:
+          if new_Faerie["faeries"][i]["name"] == self.Name:
+            self.__init__(**new_Faerie["faeries"][i+2], level = self.Level, killCount = self.Kills)
+            break
 
 
 
   def takeDamage(self, damage):
-    self.currentHP = self.currentHP - damage
+    self.currentHP = round(self.currentHP - damage)
     if self.currentHP <= 0:
       self.Fainted = True
       self.currentHP = 0
@@ -160,6 +167,7 @@ class Entity:
     self.ValidTeamMember.pop(0)
     self.ValidTeamNumber -= 1
 
+
 class Player(Entity):
   def __init__(self, name, item, bag):
     Entity.__init__(self, name)
@@ -167,9 +175,14 @@ class Player(Entity):
     Player.Inventory = bag
     
 
+class Player_File():
+  def __init__(self, name, items):
+    self.name = name
+    self.items = items
+
 
 def calculate_damage(power, level, attack, enemy_defense, protection):
-  return(((2 * (level * 20) + 2) * power * (attack/enemy_defense)) * protection)
+  return(round(((2 * level + 2) * power * (attack/enemy_defense)) * protection)/20)
 
 
 
