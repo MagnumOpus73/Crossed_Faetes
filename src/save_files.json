@@ -1,8 +1,4 @@
 {
-    "Players": [
-        {
-            "name": "Test",
-            "items": []
-        }
-    ]
+    "name": "Hikari",
+    "items": "[]"
 }

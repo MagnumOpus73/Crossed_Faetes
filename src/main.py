@@ -23,18 +23,17 @@ while valid == False:
      valid = True
     elif choice == "2":
         name = input("What is your name? ")
-        try:
-            with open("save_files.json", "r") as f:
-                for i in range(len(["save_files"])):
-
-                    if t.loadJSON(f)["save_files"][i]["name"] == name:
-                        Player = o.Player_File(**t.loadJSON(f)["save_files"][i])        
-                        print("Player loaded successfully.")
-                        valid = True
-        except:
-            print("Player not found.")
+        Player = (t.loadJSON(filepath = "./src/save_files.json"))
+        for i in range(len(["players"])):
+            if Player["name"] == name:
+                Player = o.Player_File(**Player)        
+                print("Player loaded successfully.")
+                valid = True
     elif choice == "9":
         print("Exiting game...")
         valid = True
     else:
         print("Invalid choice.")
+
+
+t.saveJSON(filepath = "./src/save_files.json", data = Player.savePlayer())

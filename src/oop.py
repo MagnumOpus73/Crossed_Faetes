@@ -179,6 +179,13 @@ class Player_File():
   def __init__(self, name, items):
     self.name = name
     self.items = items
+  def savePlayer(self):
+    save_data = {
+        "name": self.name,
+        "items": self.items
+    }
+    print("Save successful!")
+    return save_data
 
 
 def calculate_damage(power, level, attack, enemy_defense, protection):
