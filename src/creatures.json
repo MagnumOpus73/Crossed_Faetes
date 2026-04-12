@@ -31,7 +31,7 @@
       "speed": 65,
       "canEvolve": "True",
       "evolved": "False",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "movePool": ["TESTING-D", "Spark", "TESTING-D", "Spark"]
     },
     "Boarfrost", {
       "name": "Boarfrost",
@@ -42,7 +42,7 @@
       "speed": 70,
       "canEvolve": "False",
       "evolved": "True",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "movePool": ["TESTING-D", "Spark", "TESTING-D", "Spark"]
     },
     "Evergrow", {
       "name": "Evergrow",
@@ -53,7 +53,7 @@
       "speed": 25,
       "canEvolve": "True",
       "evolved": "False",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "movePool": ["TESTING-D", "Spark", "TESTING-D", "Spark"]
     },
     "Eternascend", {
       "name": "Eternascend",
@@ -64,7 +64,7 @@
       "speed": 30,
       "canEvolve": "False",
       "evolved": "True",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "movePool": ["TESTING-D", "Spark", "TESTING-D", "Spark"]
     },
     "Chither", {
       "name": "Chither",
@@ -75,7 +75,7 @@
       "speed": 45,
       "canEvolve": "True",
       "evolved": "False",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "movePool": ["TESTING-D", "Spark", "TESTING-D", "Spark"]
     },
     "Twiwilt", {
       "name": "Twiwilt",
@@ -86,7 +86,7 @@
       "speed": 60,
       "canEvolve": "False",
       "evolved": "True",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "movePool": ["TESTING-D", "Spark", "TESTING-D", "Spark"]
     },
     "Jimothy", {
       "name": "TESTING",
@@ -97,7 +97,7 @@
       "speed": 100,
       "canEvolve": "False",
       "evolved": "False",
-      "movePool": ["TESTING-D", "TESTING-S"]
+      "movePool": ["TESTING-D", "Spark", "TESTING-D", "Spark"]
     }
   ]
 }

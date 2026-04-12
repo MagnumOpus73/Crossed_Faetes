@@ -144,6 +144,8 @@ class move:
       print(self.Type)
       print("Accuracy: " + str(self.Accuracy))
 
+  def getAccuracy(self):
+    return self.Accuracy
       
   def getType(self):
     return self.Type
@@ -158,10 +160,13 @@ class move:
 class Entity:
   def __init__(self, name):
     self.Defeated = False
-    self.Party = [None]*6
+    self.Party = [None]*3
     self.Name = name
     self.ValidTeamMember = self.Party
     self.ValidTeamNumber = len(self.ValidTeamMember)
+
+  def getParty(self):
+    return self.Party
 
   def FaerieDefeated(self):
     self.ValidTeamMember.pop(0)
@@ -179,6 +184,13 @@ class Player_File():
   def __init__(self, name, items):
     self.name = name
     self.items = items
+  
+  def getName(self):
+    return self.name
+  
+  def getItems(self):
+    return self.items
+
   def savePlayer(self):
     save_data = {
         "name": self.name,
@@ -216,4 +228,5 @@ def getMove(name):
   for i in range(len(new_Move["moves"])):
     if i % 2 != 0:
       if new_Move["moves"][i]["name"] == name:
+        print(new_Move["moves"][i])
         return new_Move["moves"][i]

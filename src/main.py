@@ -12,23 +12,18 @@ print("2. Load Game")
 print("9. Exit Game")
 valid = False
 save_files = (t.loadJSON(filepath = "./src/save_files.json"))
-print(save_files)
+Player = o.Player_File(**save_files)
+print("Availiable Player:", Player.getName())
 while valid == False:
-
     choice = input("Enter your choice: ")
 
     if choice == "1":
      name = input("What is your name? ")
      Player = o.Player_File(name, "[]")
      valid = True
-    elif choice == "2":
-        name = input("What is your name? ")
-        Player = (t.loadJSON(filepath = "./src/save_files.json"))
-        for i in range(len(["players"])):
-            if Player["name"] == name:
-                Player = o.Player_File(**Player)        
-                print("Player loaded successfully.")
-                valid = True
+    elif choice == "2":        
+        print("Player loaded successfully.")
+        valid = True
     elif choice == "9":
         print("Exiting game...")
         valid = True
@@ -37,3 +32,9 @@ while valid == False:
 
 
 t.saveJSON(filepath = "./src/save_files.json", data = Player.savePlayer())
+Player_Faerie = o.InPlay_Faerie(**o.getFaerie("Pyree"), level = 1, killCount = 0)
+Player_Entity = o.Player(Player.getName(), Player.getItems(), "[]")
+Player_Entity.Party[0] = Player_Faerie
+Opponent = o.Entity("Opponent")
+opponent_Faerie = b.getOpponent(Player_Entity.Party[0])
+b.battle(Player_Entity, Player_Entity.Party[0], Opponent, opponent_Faerie)
