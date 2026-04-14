@@ -5,8 +5,7 @@ import random as r
 
 def attack(move_name, attacker, defender):
   move = o.getMove(move_name)
-  print(move)
-  move = o.move(move["name"], move["type"], move["power"], move["accuracy"])
+  move.displayMove()
   print(attacker.Name, "used", move.getName() + "!")
   if move.getAccuracy() >= r.randint(1, 100):
     if move.getType() == "Damage":

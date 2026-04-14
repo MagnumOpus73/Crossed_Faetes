@@ -203,19 +203,6 @@ class Player_File():
 def calculate_damage(power, level, attack, enemy_defense, protection):
   return(round(((2 * level + 2) * power * (attack/enemy_defense)) * protection)/20)
 
-
-
-#Actual testing. How statlines appear when going through the formulas.
-#test1 = InPlay_Faerie("TEST", 1, "NULL", 80, 80, 80, 80, "False", 0, [])
-#test2 = InPlay_Faerie("TEST", 2, "NULL", 80, 80, 80, 80, "False", 0, [])
-#test3 = InPlay_Faerie("TEST", 5, "NULL", 80, 80, 80, 80, "False", 0, [])
-#InPlay_Faerie.display(test1)
-#print()
-#InPlay_Faerie.display(test2)
-#print()
-#InPlay_Faerie.display(test3)
-
-
 def getFaerie(name):
   new_Faerie = (t.loadJSON(filepath = "./src/creatures.json"))
   for i in range(len(new_Faerie["faeries"])):
@@ -229,4 +216,8 @@ def getMove(name):
     if i % 2 != 0:
       if new_Move["moves"][i]["name"] == name:
         print(new_Move["moves"][i])
-        return new_Move["moves"][i]
+        new_Move = move(**new_Move["moves"][i])
+        
+        return new_Move
+      else:
+        print(new_Move["moves"][i])
