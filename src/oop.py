@@ -168,6 +168,13 @@ class Entity:
   def getParty(self):
     return self.Party
 
+  def getPartyLength(self):
+    length = len(self.Party)
+    for i in self.Party:
+      if i == None:
+        length -= 1
+    return length
+
   def FaerieDefeated(self):
     self.ValidTeamMember.pop(0)
     self.ValidTeamNumber -= 1

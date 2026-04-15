@@ -4,12 +4,12 @@ import table_manipulation as t
 import random as r
 
 def attack(move_name, attacker, defender):
-  move = o.getMove(move_name)
-  move.displayMove()
-  print(attacker.Name, "used", move.getName() + "!")
-  if move.getAccuracy() >= r.randint(1, 100):
-    if move.getType() == "Damage":
-      damage = o.calculate_damage(move.getPower(), attacker.Level, attacker.Attack, defender.Defense, defender.Protected)
+  move_used = o.getMove(move_name)
+  move_used.displayMove()
+  print(attacker.Name, "used", move_used.getName() + "!")
+  if move_used.getAccuracy() >= r.randint(1, 100):
+    if move_used.getType() == "Damage":
+      damage = o.calculate_damage(move_used.getPower(), attacker.Level, attacker.Attack, defender.Defense, defender.Protected)
       print(damage)
       defender.takeDamage(damage)
       attacker.battleDisplay()
@@ -24,7 +24,7 @@ def attack(move_name, attacker, defender):
         if r.randint(1,5) == 1:
           defender.Burning = 3
           print(defender.Name, "was burned!")
-          defender.takeDamage(20, defender)
+          defender.takeDamage(20)
       elif move_name == "Accellerant":
         defender.takeDamage(o.calculate_damage((20*defender.Burning), attacker.Level, attacker.Attack, defender.Defense, defender.Protected), defender)
       elif move_name == "Combustible":
@@ -79,13 +79,13 @@ def start_of_turn(turn_count, self):
   turn_count += 0.5
   self.Protected = 1
   if self.Burning > 0:
-    self.currentHP = o.takeDamage((1/8 * self.currentHP), self)
+    self.currentHP = self.takeDamage((1/8 * self.currentHP), self)
     self.Burning -= 1
   elif self.Poisoned > 0:
-    self.currentHP = o.takeDamage((1/16 * self.currentHP * self.Poisoned), self)
+    self.currentHP = self.takeDamage((1/16 * self.currentHP * self.Poisoned), self)
     self.Poisoned -= 1
   elif self.Regrowing > 0:
-    self.currentHP = o.takeDamage((-1 * (1/8 * self.currentHP), self))
+    self.currentHP = self.takeDamage((-1 * (1/8 * self.currentHP), self))
     self.Regrowing -= 1
   elif self.Withering > 0:
     self.Withering -= 1
@@ -119,14 +119,35 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
             valid = True
           except:
             print("Invalid move. Try again.")
-
+        if opponent_Faerie.getSpeed() > Player_Faerie.getSpeed():
+          print("The opponent strikes first!")
+          attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
+          if Player_Faerie.currentHP != 0:
+            attack(move, Player_Faerie, opponent_Faerie)
+        elif opponent_Faerie.getSpeed() < Player_Faerie.getSpeed():
+          print("You strike first!")
+          attack(move, Player_Faerie, opponent_Faerie)
+          if opponent_Faerie.currentHP != 0:
+            attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
+        elif opponent_Faerie.getSpeed() == Player_Faerie.getSpeed():
+          if r.randint(1, 2) == 1:
+            print("The opponent strikes first!")
+            attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
+            if Player_Faerie.currentHP != 0:
+              attack(move, Player_Faerie, opponent_Faerie)
+        else:
+          print("You strike first!")
+          attack(move, Player_Faerie, opponent_Faerie)
+          if opponent_Faerie.currentHP != 0:
+            attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
       elif playerAction == "C":
-        if len(Player.Party) >= 3:
+        attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
+        if Player.getPartyLength() >= 3:
           print("Your party is full! You cannot contract more Faeries.") 
         else:
-          if r.randint(1, (100*(opponent_Faerie.currentHP/opponent_Faerie.HP))) <= 15:
+          if r.randint(1, (round(100*(opponent_Faerie.currentHP/opponent_Faerie.HP)))) <= 15:
             print("Contract successful!")
-            Player.Party.append(opponent_Faerie)
+            Player.Party[Player.getPartyLength()] = opponent_Faerie
             opponent_Faerie.playerDisplay()
             opponent_Faerie.currentHP = 0
       elif playerAction == "F":
@@ -137,47 +158,24 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
       else:
         print("Invalid input: Try Again.")
         playerAction = 0
-    if opponent_Faerie.getSpeed() > Player_Faerie.getSpeed():
-      print("The opponent strikes first!")
-      attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
-      if Player_Faerie.currentHP != 0:
-        attack(move, Player_Faerie, opponent_Faerie)
-    elif opponent_Faerie.getSpeed() < Player_Faerie.getSpeed():
-      print("You strike first!")
-      attack(move, Player_Faerie, opponent_Faerie)
-      if opponent_Faerie.currentHP != 0:
-        attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
-    elif opponent_Faerie.getSpeed() == Player_Faerie.getSpeed():
-      if r.randint(1, 2) == 1:
-        print("The opponent strikes first!")
-        attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
-        if Player_Faerie.currentHP != 0:
-          attack(move, Player_Faerie, opponent_Faerie)
-      else:
-        print("You strike first!")
-        attack(move, Player_Faerie, opponent_Faerie)
-        if opponent_Faerie.currentHP != 0:
-          attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
+    
     opponent_Faerie.battleDisplay()
     Player_Faerie.battleDisplay()
-    if o.Player.currentHP == 0:
-      if o.Player.ValidTeamNumber == 0:
+    if Player_Faerie.currentHP == 0:
+      if Player.ValidTeamNumber > 0:
+        print("Next up!")
+        pass
+      elif Player.ValidTeamNumber == 0:
         if forfeit == False:
           print("Loss")
         else:
           print("You forfeited your life. Game Over.")
-      elif o.Player.ValidTeamNumber > 0:
-        print("Next up!")
 
   if opponent_Faerie.currentHP == 0:
-    o.InPlay_Faerie.LevelUp(Player_Faerie)
+    Player_Faerie.LevelUp()
     if Opponent.ValidTeamNumber == 0:
       print("Win.")
     elif Opponent.ValidTeamNumber > 0:
       print("Next enemy.")
+      print(Player.getParty())
 
-
-
-
-
-attack("Spark", Player_Faerie, getOpponent(Player_Faerie))

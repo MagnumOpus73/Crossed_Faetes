@@ -37,4 +37,6 @@ Player_Entity = o.Player(Player.getName(), Player.getItems(), "[]")
 Player_Entity.Party[0] = Player_Faerie
 Opponent = o.Entity("Opponent")
 opponent_Faerie = b.getOpponent(Player_Entity.Party[0])
+print(Player_Entity.getParty())
+print(Player_Entity.getPartyLength())
 b.battle(Player_Entity, Player_Entity.Party[0], Opponent, opponent_Faerie)
