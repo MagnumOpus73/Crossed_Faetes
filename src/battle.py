@@ -77,6 +77,7 @@ def getOpponent(player):
 
 def start_of_turn(turn_count, self):
   turn_count += 0.5
+  self.battleDisplay()
   self.Protected = 1
   if self.Burning > 0:
     self.currentHP = self.takeDamage((1/8 * self.currentHP), self)
@@ -104,6 +105,9 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
   while opponent_Faerie.currentHP != 0 and Player_Faerie.currentHP != 0:
     start_of_turn(turn_count, Player_Faerie)
     start_of_turn(turn_count, opponent_Faerie)
+    enemy_move = opponent_Faerie.getMovefromMovepool(r.randint(0,3))
+    enemy_action = o.getMove(enemy_move)
+    print(enemy_move)
     playerAction = 0
     while playerAction == 0:
       Player_Faerie.battleDisplay()
@@ -119,29 +123,38 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
             valid = True
           except:
             print("Invalid move. Try again.")
-        if opponent_Faerie.getSpeed() > Player_Faerie.getSpeed():
-          print("The opponent strikes first!")
-          attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
-          if Player_Faerie.currentHP != 0:
-            attack(move, Player_Faerie, opponent_Faerie)
-        elif opponent_Faerie.getSpeed() < Player_Faerie.getSpeed():
-          print("You strike first!")
+        if move.Protecting == "True":
+          print("You protect yourself!")
           attack(move, Player_Faerie, opponent_Faerie)
-          if opponent_Faerie.currentHP != 0:
-            attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
-        elif opponent_Faerie.getSpeed() == Player_Faerie.getSpeed():
-          if r.randint(1, 2) == 1:
+          attack(enemy_action, opponent_Faerie, Player_Faerie)
+        elif enemy_action.Protecting == "True":
+          print("The enemy protects themself!")
+          attack(enemy_action, opponent_Faerie, Player_Faerie)
+          attack(move, Player_Faerie, opponent_Faerie)
+        else:
+          if opponent_Faerie.getSpeed() > Player_Faerie.getSpeed():
             print("The opponent strikes first!")
-            attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
+            attack(enemy_move, opponent_Faerie, Player_Faerie)
             if Player_Faerie.currentHP != 0:
               attack(move, Player_Faerie, opponent_Faerie)
-        else:
-          print("You strike first!")
-          attack(move, Player_Faerie, opponent_Faerie)
-          if opponent_Faerie.currentHP != 0:
-            attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
+          elif opponent_Faerie.getSpeed() < Player_Faerie.getSpeed():
+            print("You strike first!")
+            attack(move, Player_Faerie, opponent_Faerie)
+            if opponent_Faerie.currentHP != 0:
+              attack(enemy_move, opponent_Faerie, Player_Faerie)
+          elif opponent_Faerie.getSpeed() == Player_Faerie.getSpeed():
+            if r.randint(1, 2) == 1:
+              print("The opponent strikes first!")
+              attack(enemy_move, opponent_Faerie, Player_Faerie)
+              if Player_Faerie.currentHP != 0:
+                attack(move, Player_Faerie, opponent_Faerie)
+          else:
+            print("You strike first!")
+            attack(move, Player_Faerie, opponent_Faerie)
+            if opponent_Faerie.currentHP != 0:
+              attack(enemy_move, opponent_Faerie, Player_Faerie)
       elif playerAction == "C":
-        attack(opponent_Faerie.Movepool[r.randint(0, 3)], opponent_Faerie, Player_Faerie)
+        attack(enemy_move, opponent_Faerie, Player_Faerie)
         if Player.getPartyLength() >= 3:
           print("Your party is full! You cannot contract more Faeries.") 
         else:

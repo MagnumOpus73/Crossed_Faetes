@@ -44,7 +44,12 @@ class InPlay_Faerie(Faerie):
     self.Burning = 0
     self.Withering = 0
     self.Regrowing = 0
-    self.Protected = 1    
+    self.Protected = 1
+
+  def getMovefromMovepool(self, index):
+    print(self.Movepool)
+    print(self.Movepool[index])
+    return self.Movepool[index]   
 
   def getAttack(self):
     return self.Attack
@@ -127,11 +132,12 @@ def displayJSON(self, file_path = "creatures.json"):
   
 
 class move:
-  def __init__(self, name, type, power, accuracy):
+  def __init__(self, name, type, power, accuracy, protecting):
     self.Name = name
     self.Power = power
     self.Type = type
     self.Accuracy = accuracy
+    self.Protecting = protecting
   
   def displayMove(self):
     if self.Type == "Attack":
@@ -224,7 +230,7 @@ def getMove(name):
       if new_Move["moves"][i]["name"] == name:
         print(new_Move["moves"][i])
         new_Move = move(**new_Move["moves"][i])
-        
+        new_Move.displayMove()
         return new_Move
       else:
         print(new_Move["moves"][i])

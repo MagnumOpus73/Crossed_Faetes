@@ -4,61 +4,71 @@
       "name": "TESTING-D",
       "type": "Damage",
       "power": 50,
-      "accuracy": 100
+      "accuracy": 100,
+      "protecting": "False"
     },
     "TESTING-S", {
       "name": "TESTING-S",
       "type": "Status",
       "power": 0,
-      "accuracy": 100
+      "accuracy": 100,
+      "protecting": "False"
     },
     "Spark", {
       "name": "Spark",
       "type": "Damage",
       "power": 40,
-      "accuracy": 100
+      "accuracy": 100,
+      "protecting": "False"
     },
     "Hot Coals", {
       "name": "Hot Coals",
       "type": "Status",
       "power": 0,
-      "accuracy": 100
+      "accuracy": 100,
+      "protecting": "False"
     },
     "Light Up", {
       "name": "Light Up",
       "type": "Status",
       "power": 0,
-      "accuracy": 100
+      "accuracy": 100,
+      "protecting": "False"
     },
     "Glowing Wick", {
       "name": "Glowing Wick",
       "type": "Status",
       "power": 20,
-      "accuracy": 100
+      "accuracy": 100,
+      "protecting": "True"
     },
     "Funeral Pyre", {
       "name": "Funeral Pyre",
       "type": "Damage",
       "power": 60,
-      "accuracy": 100
+      "accuracy": 100,
+      "protecting": "False"
     },
     "Combustible", {
       "name": "Combustible",
       "type": "Status",
       "power": 0,
-      "accuracy": 80
+      "accuracy": 80,
+      "protecting": "False"
     },
     "Enflame", {
       "name": "Enflame",
       "type": "Status",
       "power": 0,
-      "accuracy": 90
+      "accuracy": 90,
+      "protecting": "False"
     },
     "Accelerant", {
       "name": "Accelerant",
       "type": "Damage",
       "power": 0,
-      "accuracy": 100
+      "accuracy": 100,
+      "protecting": "False"
      }
      
   ]
