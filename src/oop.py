@@ -191,7 +191,7 @@ class Entity:
 
   def FaerieDefeated(self):
     self.Party.pop(0)
-    self.ValidTeamNumber -= 1
+    
 
 
 class Player(Entity):
