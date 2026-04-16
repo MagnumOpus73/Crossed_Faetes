@@ -44,6 +44,7 @@ while game_over == False:
             valid = True
         else:
             print("Invalid first choice.")
+        total_kills = 0
         while game_over == False:
             opponent_Faerie = b.getOpponent(Player_Faerie)
             if first_encounter == True:
@@ -51,6 +52,8 @@ while game_over == False:
             else:
                 Opponent.Party[0] = opponent_Faerie
             game_over = b.battle(Player_Entity, Player_Faerie, Opponent, opponent_Faerie, game_over, Player)
+            total_kills += 1
+print("Your score was:", total_kills)
         
 
     
