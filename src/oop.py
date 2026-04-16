@@ -48,7 +48,6 @@ class InPlay_Faerie(Faerie):
 
   def getMovefromMovepool(self, index):
     print(self.Movepool)
-    print(self.Movepool[index])
     return self.Movepool[index]   
 
   def getAttack(self):
