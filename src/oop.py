@@ -85,6 +85,8 @@ class InPlay_Faerie(Faerie):
 
 
   def takeDamage(self, damage):
+    if self.currentHP == None:
+      self.currentHP = 0
     self.currentHP = round(int(self.currentHP - damage))
     if self.currentHP <= int(0):
       self.Fainted = True
@@ -96,7 +98,7 @@ class InPlay_Faerie(Faerie):
 
   def LevelUp(self):
     self.Kills += 1
-    if self.Level < 10 and self.Kills == (self.Level * 2):
+    if self.Level < 10 and self.Kills == 2:
       self.Kills = 0
       self.Level = self.Level + 1
       self.Evolve()
@@ -188,7 +190,7 @@ class Entity:
     return length
 
   def FaerieDefeated(self):
-    self.ValidTeamMember.pop(0)
+    self.Party.pop(0)
     self.ValidTeamNumber -= 1
 
 
@@ -236,7 +238,4 @@ def getMove(name):
       if new_Move["moves"][i]["name"] == name:
         print(new_Move["moves"][i])
         new_Move = move(**new_Move["moves"][i])
-        new_Move.displayMove()
         return new_Move
-      else:
-        print(new_Move["moves"][i])

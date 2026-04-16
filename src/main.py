@@ -53,6 +53,7 @@ while game_over == False:
                 Opponent.Party[0] = opponent_Faerie
             game_over = b.battle(Player_Entity, Player_Faerie, Opponent, opponent_Faerie, game_over, Player)
             total_kills += 1
+            Player.savePlayer()
 print("Your score was:", total_kills)
         
 

@@ -76,6 +76,8 @@ def opponentDisplay(opponent_Faerie):
   print("Opponent's HP: ", opponent_Faerie.currentHP)
 
 def start_of_turn(turn_count, self):
+  if self.currentHP == None:
+    self.currentHP = 0
   turn_count += 0.5
   print(turn_count)
   if turn_count % 1 == 0:
@@ -160,11 +162,14 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
         if Player.getPartyLength() >= 3:
           print("Your party is full! You cannot contract more Faeries.") 
         else:
-          if r.randint(1, (round(100*(opponent_Faerie.currentHP/opponent_Faerie.HP)))) <= 15:
+          if r.randint(1, (round(100*(opponent_Faerie.currentHP/opponent_Faerie.HP)))) <= 20:
             print("Contract successful!")
+            opponent_Faerie.currentHP = opponent_Faerie.HP
             Player.Party.append(opponent_Faerie)
             opponent_Faerie.playerDisplay()
             opponent_Faerie.currentHP = 0
+          else:
+            print("Contract Unsuccessful.")
       elif playerAction == "F":
         forfeit = True
         Player_Faerie.currentHP = 0
@@ -181,6 +186,7 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
       Player.FaerieDefeated()
       if Player.ValidTeamNumber > 0:
         print("Next up!")
+        Player_Faerie = Player.Party[0]
         pass
       elif Player.ValidTeamNumber == 0:
         game_over = True
