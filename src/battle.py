@@ -3,8 +3,7 @@ import oop as o
 import table_manipulation as t
 import random as r
 
-def attack(move_name, attacker, defender):
-  move_used = o.getMove(move_name)
+def attack(move_used, attacker, defender):
   move_used.displayMove()
   print(attacker.Name, "used", move_used.getName() + "!")
   if move_used.getAccuracy() >= r.randint(1, 100):
@@ -15,25 +14,25 @@ def attack(move_name, attacker, defender):
       attacker.battleDisplay()
       defender.battleDisplay()
     else:
-      if move_name == "Light Up":
+      if move_used.Name == "Light Up":
         defender.Burning = 3
         print(defender.Name, "was burned!")
-      elif move_name == "Glowing Wick":
+      elif move_used.Name == "Glowing Wick":
         attacker.Protected = 0.6
-      elif move_name == "Hot Coals":
+      elif move_used.Name == "Hot Coals":
         if r.randint(1,5) == 1:
           defender.Burning = 3
           print(defender.Name, "was burned!")
           defender.takeDamage(20)
-      elif move_name == "Accellerant":
+      elif move_used.Name == "Accellerant":
         defender.takeDamage(o.calculate_damage((20*defender.Burning), attacker.Level, attacker.Attack, defender.Defense, defender.Protected), defender)
-      elif move_name == "Combustible":
+      elif move_used.Name == "Combustible":
         if r.randint(1,2) == 1:
           defender.takeDamage(o.calculate_damage((85), attacker.Level, attacker.Attack, defender.Defense, defender.Protected), defender)
         else:
           attacker.takeDamage(o.calculate_damage((15), attacker.Level, attacker.Attack, defender.Defense, defender.Protected), attacker)
           print("The attack backfired!")
-      elif move_name == "Enflame":
+      elif move_used.Name == "Enflame":
         defender.Burning = 4
   else:
     print("But it missed!")
@@ -73,20 +72,25 @@ def getOpponent(player):
   opponent_Faerie.playerDisplay()
   return opponent_Faerie
 
-
+def opponentDisplay(opponent_Faerie):
+  print("Opponent's HP: ", opponent_Faerie.currentHP)
 
 def start_of_turn(turn_count, self):
   turn_count += 0.5
-  self.battleDisplay()
+  print(turn_count)
+  if turn_count != 0.5:
+    self.opponentDisplay()
+  else:
+    self.battleDisplay()
   self.Protected = 1
   if self.Burning > 0:
-    self.currentHP = self.takeDamage((1/8 * self.currentHP), self)
+    self.currentHP = self.takeDamage(round(1/8 * round(self.currentHP)))
     self.Burning -= 1
   elif self.Poisoned > 0:
-    self.currentHP = self.takeDamage((1/16 * self.currentHP * self.Poisoned), self)
+    self.currentHP = self.takeDamage((1/16 * self.currentHP * self.Poisoned))
     self.Poisoned -= 1
   elif self.Regrowing > 0:
-    self.currentHP = self.takeDamage((-1 * (1/8 * self.currentHP), self))
+    self.currentHP = self.takeDamage((-1 * (1/8 * self.currentHP)))
     self.Regrowing -= 1
   elif self.Withering > 0:
     self.Withering -= 1
@@ -110,7 +114,6 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
     print(enemy_move)
     playerAction = 0
     while playerAction == 0:
-      Player_Faerie.battleDisplay()
       print("Would you like to attack (A), attempt a contract(C), or forfeit your life(F)?")  
       playerAction = input()
       if playerAction == "A":
@@ -134,27 +137,27 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
         else:
           if opponent_Faerie.getSpeed() > Player_Faerie.getSpeed():
             print("The opponent strikes first!")
-            attack(enemy_move, opponent_Faerie, Player_Faerie)
+            attack(enemy_action, opponent_Faerie, Player_Faerie)
             if Player_Faerie.currentHP != 0:
               attack(move, Player_Faerie, opponent_Faerie)
           elif opponent_Faerie.getSpeed() < Player_Faerie.getSpeed():
             print("You strike first!")
             attack(move, Player_Faerie, opponent_Faerie)
             if opponent_Faerie.currentHP != 0:
-              attack(enemy_move, opponent_Faerie, Player_Faerie)
+              attack(enemy_action, opponent_Faerie, Player_Faerie)
           elif opponent_Faerie.getSpeed() == Player_Faerie.getSpeed():
             if r.randint(1, 2) == 1:
               print("The opponent strikes first!")
-              attack(enemy_move, opponent_Faerie, Player_Faerie)
+              attack(enemy_action, opponent_Faerie, Player_Faerie)
               if Player_Faerie.currentHP != 0:
                 attack(move, Player_Faerie, opponent_Faerie)
           else:
             print("You strike first!")
             attack(move, Player_Faerie, opponent_Faerie)
             if opponent_Faerie.currentHP != 0:
-              attack(enemy_move, opponent_Faerie, Player_Faerie)
+              attack(enemy_action, opponent_Faerie, Player_Faerie)
       elif playerAction == "C":
-        attack(enemy_move, opponent_Faerie, Player_Faerie)
+        attack(enemy_action, opponent_Faerie, Player_Faerie)
         if Player.getPartyLength() >= 3:
           print("Your party is full! You cannot contract more Faeries.") 
         else:

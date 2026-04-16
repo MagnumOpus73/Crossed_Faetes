@@ -4,7 +4,7 @@ import battle as b
 import random as r
 import table_manipulation as t
 from pathlib import Path
-
+game_over = False
 print("Main Menu, please input the number corresponding to the option you want to select:   ")
 print()
 print("1. New Game")
@@ -30,13 +30,17 @@ while valid == False:
     else:
         print("Invalid choice.")
 
+while game_over == False:
+    valid = False
+    Player_Entity = o.Player(Player.getName(), Player.getItems(), "[]")
+    print("What Faerie do you choose to start your adventure with? Pyree, Rimekin, Chither or Evergrow? ")
+    run_begin = input()
+    while valid == False:
+        if run_begin == "Pyree" or run_begin == "Evergrow" or run_begin == "Chither" or run_begin == "Rimekin":
+            Player_Faerie = o.InPlay_Faerie(**o.getFaerie(run_begin, level = 1, killcount = 0))
+            Player_Entity.Party[0] = Player_Faerie
+            valid = True
+        else:
+            print("Invalid first choice.")
 
-t.saveJSON(filepath = "./src/save_files.json", data = Player.savePlayer())
-Player_Faerie = o.InPlay_Faerie(**o.getFaerie("Pyree"), level = 1, killCount = 0)
-Player_Entity = o.Player(Player.getName(), Player.getItems(), "[]")
-Player_Entity.Party[0] = Player_Faerie
-Opponent = o.Entity("Opponent")
-opponent_Faerie = b.getOpponent(Player_Entity.Party[0])
-print(Player_Entity.getParty())
-print(Player_Entity.getPartyLength())
-b.battle(Player_Entity, Player_Entity.Party[0], Opponent, opponent_Faerie)
+    
