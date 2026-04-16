@@ -7,6 +7,13 @@
       "accuracy": 100,
       "protecting": "False"
     },
+    "Wrath of Jimothy", {
+      "name": "Wrath of Jimothy",
+      "type": "Damage",
+      "power": 10000000000000000000,
+      "accuracy": 100,
+      "protecting": "False"
+    },
     "TESTING-S", {
       "name": "TESTING-S",
       "type": "Status",

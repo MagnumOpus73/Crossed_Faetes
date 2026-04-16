@@ -78,7 +78,7 @@ def opponentDisplay(opponent_Faerie):
 def start_of_turn(turn_count, self):
   turn_count += 0.5
   print(turn_count)
-  if turn_count != 0.5:
+  if turn_count % 1 == 0:
     self.opponentDisplay()
   else:
     self.battleDisplay()
@@ -102,13 +102,11 @@ def start_of_turn(turn_count, self):
 
 
 
-def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
+def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_File):
   turn_count = 0
-  start_of_turn(turn_count, Player_Faerie)
-  start_of_turn(turn_count, opponent_Faerie)
   while opponent_Faerie.currentHP != 0 and Player_Faerie.currentHP != 0:
-    start_of_turn(turn_count, Player_Faerie)
-    start_of_turn(turn_count, opponent_Faerie)
+    turn_count = start_of_turn(turn_count, Player_Faerie)
+    turn_count = start_of_turn(turn_count, opponent_Faerie)
     enemy_move = opponent_Faerie.getMovefromMovepool(r.randint(0,3))
     enemy_action = o.getMove(enemy_move)
     print(enemy_move)
@@ -175,13 +173,14 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
         print("Invalid input: Try Again.")
         playerAction = 0
     
-    opponent_Faerie.battleDisplay()
+    opponent_Faerie.opponentDisplay()
     Player_Faerie.battleDisplay()
     if Player_Faerie.currentHP == 0:
       if Player.ValidTeamNumber > 0:
         print("Next up!")
         pass
       elif Player.ValidTeamNumber == 0:
+        game_over = True
         if forfeit == False:
           print("Loss")
         else:
@@ -194,4 +193,8 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie):
     elif Opponent.ValidTeamNumber > 0:
       print("Next enemy.")
       print(Player.getParty())
-
+  Player_File.savePlayer()
+  print(game_over)
+  print()
+  print()
+  return game_over

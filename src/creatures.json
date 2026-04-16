@@ -9,7 +9,7 @@
       "speed": 55,
       "canEvolve": "True",
       "evolved": "False",
-      "movePool": ["Spark", "Hot Coals", "Light Up", "Glowing Wick"]
+      "movePool": ["Spark", "Hot Coals", "Light Up", "Glowing Wick", "Wrath of Jimothy"]
     },
     "Sprire", {
       "name": "Sprire",

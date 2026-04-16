@@ -5,7 +5,7 @@ import random as r
 import table_manipulation as t
 from pathlib import Path
 game_over = False
-Opponent = o.Entity("Opoonent")
+Opponent = o.Entity("Opponent")
 print("Main Menu, please input the number corresponding to the option you want to select:   ")
 print()
 print("1. New Game")
@@ -44,8 +44,9 @@ while game_over == False:
         else:
             print("Invalid first choice.")
         while game_over == False:
-            Opponent.Party[0] = Opponent
-            b.battle(Player_Entity, Player_Faerie, )
+            opponent_Faerie = b.getOpponent(Player_Faerie)
+            Opponent.Party[0] = opponent_Faerie
+            game_over = b.battle(Player_Entity, Player_Faerie, Opponent, opponent_Faerie, game_over, Player)
         
 
     

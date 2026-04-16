@@ -116,10 +116,14 @@ class InPlay_Faerie(Faerie):
     print(self.baseSpeed, self.Speed)
     print(self.Movepool)
   
+  def opponentDisplay(self):
+    print("Opponent's HP:", str(self.currentHP) + "/" + str(self.HP))
+    print()
+
   def battleDisplay(self):
     print("Current HP:", str(self.currentHP) + "/" + str(self.HP))
-    print()
     print(self.Movepool)
+    print()
 
 class JSON_Faeries:
   def __init__(self, file_path = "creatures.json"):
