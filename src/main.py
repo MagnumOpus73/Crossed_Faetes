@@ -6,6 +6,7 @@ import table_manipulation as t
 from pathlib import Path
 game_over = False
 Opponent = o.Entity("Opponent")
+first_encounter = True
 print("Main Menu, please input the number corresponding to the option you want to select:   ")
 print()
 print("1. New Game")
@@ -39,13 +40,16 @@ while game_over == False:
         run_begin = input()
         if run_begin == "Pyree" or run_begin == "Evergrow" or run_begin == "Chither" or run_begin == "Rimekin":
             Player_Faerie = o.InPlay_Faerie(**o.getFaerie(run_begin), level = 1, killCount = 0)
-            Player_Entity.Party[0] = Player_Faerie
+            Player_Entity.Party.append(Player_Faerie)
             valid = True
         else:
             print("Invalid first choice.")
         while game_over == False:
             opponent_Faerie = b.getOpponent(Player_Faerie)
-            Opponent.Party[0] = opponent_Faerie
+            if first_encounter == True:
+                Opponent.Party.append(opponent_Faerie)
+            else:
+                Opponent.Party[0] = opponent_Faerie
             game_over = b.battle(Player_Entity, Player_Faerie, Opponent, opponent_Faerie, game_over, Player)
         
 

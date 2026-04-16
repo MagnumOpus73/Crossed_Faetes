@@ -85,10 +85,10 @@ class InPlay_Faerie(Faerie):
 
 
   def takeDamage(self, damage):
-    self.currentHP = round(self.currentHP - damage)
-    if self.currentHP <= 0:
+    self.currentHP = round(int(self.currentHP - damage))
+    if self.currentHP <= int(0):
       self.Fainted = True
-      self.currentHP = 0
+      self.currentHP = int(0)
       print(self.Name, "has fainted!")
     elif self.currentHP > self.HP:
       self.currentHP = self.HP
@@ -169,13 +169,16 @@ class move:
 class Entity:
   def __init__(self, name):
     self.Defeated = False
-    self.Party = [None]*3
+    self.Party = []
     self.Name = name
     self.ValidTeamMember = self.Party
     self.ValidTeamNumber = len(self.ValidTeamMember)
 
   def getParty(self):
     return self.Party
+
+  def getValidTeamNumber(self):
+    self.ValidTeamNumber = len(self.ValidTeamMember)
 
   def getPartyLength(self):
     length = len(self.Party)

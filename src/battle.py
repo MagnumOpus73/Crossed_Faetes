@@ -104,6 +104,7 @@ def start_of_turn(turn_count, self):
 
 def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_File):
   turn_count = 0
+  forfeit = False
   while opponent_Faerie.currentHP != 0 and Player_Faerie.currentHP != 0:
     turn_count = start_of_turn(turn_count, Player_Faerie)
     turn_count = start_of_turn(turn_count, opponent_Faerie)
@@ -161,7 +162,7 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
         else:
           if r.randint(1, (round(100*(opponent_Faerie.currentHP/opponent_Faerie.HP)))) <= 15:
             print("Contract successful!")
-            Player.Party[Player.getPartyLength()] = opponent_Faerie
+            Player.Party.append(opponent_Faerie)
             opponent_Faerie.playerDisplay()
             opponent_Faerie.currentHP = 0
       elif playerAction == "F":
@@ -175,7 +176,9 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
     
     opponent_Faerie.opponentDisplay()
     Player_Faerie.battleDisplay()
+    Player.getValidTeamNumber()
     if Player_Faerie.currentHP == 0:
+      Player.FaerieDefeated()
       if Player.ValidTeamNumber > 0:
         print("Next up!")
         pass
