@@ -104,7 +104,7 @@ def start_of_turn(turn_count, self):
 
 
 
-def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_File):
+def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_File, total_kills):
   turn_count = 0
   battle_valid = False
   forfeit = False
@@ -133,6 +133,8 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
           print("You protect yourself!")
           attack(move, Player_Faerie, opponent_Faerie)
           attack(enemy_action, opponent_Faerie, Player_Faerie)
+          if Player_Faerie.currentHP == 0:
+            Player.FaerieDefeated(Player_Faerie)
         elif enemy_action.Protecting == "True":
           print("The enemy protects themself!")
           attack(enemy_action, opponent_Faerie, Player_Faerie)
@@ -143,6 +145,8 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
             attack(enemy_action, opponent_Faerie, Player_Faerie)
             if Player_Faerie.currentHP != 0:
               attack(move, Player_Faerie, opponent_Faerie)
+            else:
+              Player.FaerieDefeated(Player_Faerie)
           elif opponent_Faerie.getSpeed() < Player_Faerie.getSpeed():
             print("You strike first!")
             attack(move, Player_Faerie, opponent_Faerie)
@@ -154,6 +158,8 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
               attack(enemy_action, opponent_Faerie, Player_Faerie)
               if Player_Faerie.currentHP != 0:
                 attack(move, Player_Faerie, opponent_Faerie)
+              else:
+                Player.FaerieDefeated(Player_Faerie)
           else:
             print("You strike first!")
             attack(move, Player_Faerie, opponent_Faerie)
@@ -183,18 +189,19 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
         print("Invalid input: Try Again.")
         playerAction = 0
     
-    opponent_Faerie.opponentDisplay()
-    Player_Faerie.battleDisplay()
-    Player.getValidTeamNumber()
     if Player_Faerie.currentHP == 0:
       Player.FaerieDefeated(Player_Faerie)
       number = Player.getValidTeamNumber()
+      if forfeit == True:
+        number = 0
       if number > 0:
-        print("Next up!")
+        print("Your Faerie died, causing you to have to flee.")
         Player_Faerie = Player.Party[0]
-        pass
+        Player_Faerie.display()
+        total_kills -= 1
       elif number == 0:
         game_over = True
+        total_kills -= 1
         if forfeit == False:
           print("Loss")
         else:
@@ -214,4 +221,4 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
   print(game_over)
   print()
   print()
-  return game_over
+  return game_over, total_kills

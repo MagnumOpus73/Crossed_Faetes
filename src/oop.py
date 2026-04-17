@@ -216,9 +216,10 @@ class Player(Entity):
     
 
 class Player_File():
-  def __init__(self, name, items):
+  def __init__(self, name, items, score):
     self.name = name
     self.items = items
+    self.score = score
   
   def getName(self):
     return self.name
@@ -226,10 +227,14 @@ class Player_File():
   def getItems(self):
     return self.items
 
+  def getScore(self):
+    return self.score
+
   def savePlayer(self):
     save_data = {
         "name": self.name,
-        "items": self.items
+        "items": self.items,
+        "score": self.score
     }
     print("Save successful!")
     return save_data

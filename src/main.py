@@ -17,12 +17,13 @@ valid = False
 save_files = (t.loadJSON(filepath = "./src/save_files.json"))
 Player = o.Player_File(**save_files)
 print("Availiable Player:", Player.getName())
+print("Max Score:", Player.getScore())
 while valid == False:
     choice = input("Enter your choice: ")
 
     if choice == "1":
      name = input("What is your name? ")
-     Player = o.Player_File(name, "[]")
+     Player = o.Player_File(name, "[]", 0)
      valid = True
     elif choice == "2":        
         print("Player loaded successfully.")
@@ -53,13 +54,18 @@ while game_over == False:
             else:
                 Opponent.Party[0] = opponent_Faerie
             Player_Faerie = Player_Entity.Party[0]
-            Player_Faerie.battleDisplay()
+            Player_Faerie.display()
+            Player_Faerie.currentHP = Player_Faerie.HP
             print(Player_Entity.Party)
-            game_over = b.battle(Player_Entity, Player_Faerie, Opponent, opponent_Faerie, game_over, Player)
             total_kills += 1
+            game_over, total_kills = b.battle(Player_Entity, Player_Faerie, Opponent, opponent_Faerie, game_over, Player, total_kills)
             t.saveJSON(filepath = "./src/save_files.json", data = Player.savePlayer())
-            time.sleep(5)
+            time.sleep(2)
 print("Your score was:", total_kills)
+if total_kills > Player.getScore():
+    Player.score = total_kills
+t.saveJSON(filepath = "./src/save_files.json", data = Player.savePlayer())
+
         
 
     
