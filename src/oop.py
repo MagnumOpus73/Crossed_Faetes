@@ -91,7 +91,7 @@ class InPlay_Faerie(Faerie):
     if self.currentHP <= int(0):
       self.Fainted = True
       self.currentHP = int(0)
-      print(self.Name, "has fainted!")
+      print(self.Name, "has died!")
     elif self.currentHP > self.HP:
       self.currentHP = self.HP
 
@@ -173,14 +173,20 @@ class Entity:
     self.Defeated = False
     self.Party = []
     self.Name = name
-    self.ValidTeamMember = self.Party
-    self.ValidTeamNumber = len(self.ValidTeamMember)
+    self.ValidTeamNumber = len(self.Party)
 
   def getParty(self):
     return self.Party
+  
+  def addFaerie(self, faerie):
+    list = self.Party
+    list.append(faerie)
+    self.Party = list
+    return self.Party
 
   def getValidTeamNumber(self):
-    self.ValidTeamNumber = len(self.ValidTeamMember)
+    self.ValidTeamNumber = len(self.Party)
+    return self.ValidTeamNumber
 
   def getPartyLength(self):
     length = len(self.Party)
@@ -189,8 +195,16 @@ class Entity:
         length -= 1
     return length
 
-  def FaerieDefeated(self):
+  def FaerieDefeated(self, player_faerie):
+    print(self.Party)
     self.Party.pop(0)
+    print(self.Party)
+    number = self.getValidTeamNumber()
+    if number == 0:
+      pass
+    else:
+      player_faerie = self.Party[0]
+    
     
 
 

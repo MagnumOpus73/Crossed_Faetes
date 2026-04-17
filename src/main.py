@@ -1,5 +1,6 @@
 #Importing necessary libraries and internal files
 import oop as o
+import time
 import battle as b
 import random as r
 import table_manipulation as t
@@ -35,7 +36,7 @@ while valid == False:
 while game_over == False:
     valid = False
     Player_Entity = o.Player(Player.getName(), Player.getItems(), "[]")
-    print("What Faerie do you choose to start your adventure with? Pyree, Rimekin, Chither or Evergrow? ")
+    print("What Faerie do you choose to start the gauntlet with? Pyree, Rimekin, Chither or Evergrow? ")
     while valid == False:
         run_begin = input()
         if run_begin == "Pyree" or run_begin == "Evergrow" or run_begin == "Chither" or run_begin == "Rimekin":
@@ -51,9 +52,13 @@ while game_over == False:
                 Opponent.Party.append(opponent_Faerie)
             else:
                 Opponent.Party[0] = opponent_Faerie
+            Player_Faerie = Player_Entity.Party[0]
+            Player_Faerie.battleDisplay()
+            print(Player_Entity.Party)
             game_over = b.battle(Player_Entity, Player_Faerie, Opponent, opponent_Faerie, game_over, Player)
             total_kills += 1
-            Player.savePlayer()
+            t.saveJSON(filepath = "./src/save_files.json", data = Player.savePlayer())
+            time.sleep(5)
 print("Your score was:", total_kills)
         
 

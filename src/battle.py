@@ -106,8 +106,10 @@ def start_of_turn(turn_count, self):
 
 def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_File):
   turn_count = 0
+  battle_valid = False
   forfeit = False
   while opponent_Faerie.currentHP != 0 and Player_Faerie.currentHP != 0:
+    battle_valid = True
     turn_count = start_of_turn(turn_count, Player_Faerie)
     turn_count = start_of_turn(turn_count, opponent_Faerie)
     enemy_move = opponent_Faerie.getMovefromMovepool(r.randint(0,3))
@@ -158,18 +160,20 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
             if opponent_Faerie.currentHP != 0:
               attack(enemy_action, opponent_Faerie, Player_Faerie)
       elif playerAction == "C":
-        attack(enemy_action, opponent_Faerie, Player_Faerie)
         if Player.getPartyLength() >= 3:
           print("Your party is full! You cannot contract more Faeries.") 
         else:
           if r.randint(1, (round(100*(opponent_Faerie.currentHP/opponent_Faerie.HP)))) <= 20:
             print("Contract successful!")
             opponent_Faerie.currentHP = opponent_Faerie.HP
-            Player.Party.append(opponent_Faerie)
+            Player.addFaerie(opponent_Faerie)
+            print(Player.Party)
             opponent_Faerie.playerDisplay()
             opponent_Faerie.currentHP = 0
           else:
             print("Contract Unsuccessful.")
+            print(Player.Party)
+            attack(enemy_action, opponent_Faerie, Player_Faerie)
       elif playerAction == "F":
         forfeit = True
         Player_Faerie.currentHP = 0
@@ -183,26 +187,30 @@ def battle(Player, Player_Faerie, Opponent, opponent_Faerie, game_over, Player_F
     Player_Faerie.battleDisplay()
     Player.getValidTeamNumber()
     if Player_Faerie.currentHP == 0:
-      Player.FaerieDefeated()
-      if Player.ValidTeamNumber > 0:
+      Player.FaerieDefeated(Player_Faerie)
+      number = Player.getValidTeamNumber()
+      if number > 0:
         print("Next up!")
         Player_Faerie = Player.Party[0]
         pass
-      elif Player.ValidTeamNumber == 0:
+      elif number == 0:
         game_over = True
         if forfeit == False:
           print("Loss")
         else:
           print("You forfeited your life. Game Over.")
+        break
 
-  if opponent_Faerie.currentHP == 0:
-    Player_Faerie.LevelUp()
-    if Opponent.ValidTeamNumber == 0:
-      print("Win.")
-    elif Opponent.ValidTeamNumber > 0:
-      print("Next enemy.")
-      print(Player.getParty())
-  Player_File.savePlayer()
+    if opponent_Faerie.currentHP == 0:
+      Player_Faerie.LevelUp()
+      number = Opponent.getValidTeamNumber()
+      if number == 0:
+        print("Win.")
+      elif number > 0:
+        print("Next enemy.")
+        print(Player.getParty())
+  if battle_valid == False:
+    game_over = True
   print(game_over)
   print()
   print()
